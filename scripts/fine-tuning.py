@@ -12,7 +12,7 @@ from functools import partial
 from dataclasses import dataclass, asdict, field
 
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, AutoConfig
 from peft import LoraConfig, PeftModel, prepare_model_for_kbit_training, get_peft_model
 from trl import SFTTrainer, DataCollatorForCompletionOnlyLM, SFTConfig
 from datasets import Dataset, IterableDataset
@@ -331,8 +331,12 @@ def get_model(model_path, n_gpus, torch_dtype, device_map, use_4bit_quantization
         )
     else:
         bnb_config = None
+    config = AutoConfig.from_pretrained(model_path)
+    config.rope_scaling = dict(type='linear', factor=2.0, original_max_position_embeddings=2048)
+    config.max_position_embeddings = 10240
     model = AutoModelForCausalLM.from_pretrained(
         model_path,
+        config=config,
         quantization_config=bnb_config,
         device_map=get_device_map(n_gpus, model_path, device_map),
         # max_memory={0: '9GB', 1: '8GB'},
@@ -349,7 +353,9 @@ def get_model(model_path, n_gpus, torch_dtype, device_map, use_4bit_quantization
 def get_tokenizer(model_path, model):
     tokenizer = AutoTokenizer.from_pretrained(
         model_path,
-        trust_remote_code=True)
+        trust_remote_code=True,
+        model_max_length=10240,
+        max_length=10240,)
     if 'llama' in model_path.lower():
         logger.info('Adding <|pad|> token to llama tokenizer')
         tokenizer.add_special_tokens({'pad_token': '<|pad|>'})
