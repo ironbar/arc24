@@ -1,0 +1,3108 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ironbar.github.io/arc24/03_State_of_the_art/">
+      
+      
+        <link rel="prev" href="../02_Data_Understanding/">
+      
+      
+        <link rel="next" href="../modeling/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+    
+    
+      
+        <title>State of the art - arc24</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#state-of-the-art" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="arc24" class="md-header__button md-logo" aria-label="arc24" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            arc24
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              State of the art
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ironbar/arc24" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01_Business_Understanding/" class="md-tabs__link">
+        
+  
+    
+  
+  Business Understanding
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02_Data_Understanding/" class="md-tabs__link">
+        
+  
+    
+  
+  Data Understanding
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  State of the art
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../modeling/" class="md-tabs__link">
+          
+  
+    
+  
+  Modeling
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05_Solution_Summary/" class="md-tabs__link">
+        
+  
+    
+  
+  Solution Summary
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../utils/00_Challenge_Workflow/" class="md-tabs__link">
+          
+  
+    
+  
+  Utils
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="arc24" class="md-nav__button md-logo" aria-label="arc24" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    arc24
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ironbar/arc24" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_Business_Understanding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Business Understanding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_Data_Understanding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Understanding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    State of the art
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    State of the art
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#papers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Papers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Papers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getting-50-sota-on-arc-agi-with-gpt-4o-by-ryan-greenblatt" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐⭐ Getting 50% (SoTA) on ARC-AGI with GPT-4o by Ryan Greenblatt
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⭐⭐ Getting 50% (SoTA) on ARC-AGI with GPT-4o by Ryan Greenblatt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#high-level-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      High level method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-are-the-returns-to-more-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the returns to more sampling?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tricks-in-the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tricks in the solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chollet-reaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chollet reaction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implications-of-this-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implications of this work
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neural-networks-for-abstraction-and-reasoning-towards-broad-generalization-in-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ Neural networks for abstraction and reasoning: Towards broad generalization in machines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecuber-1st-place-solution-on-arc2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ Icecuber 1st place solution on ARC2020
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⭐ Icecuber 1st place solution on ARC2020">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implications-of-this-work_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implications of this work
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llms-and-the-abstraction-and-reasoning-corpus-successes-failures-and-the-importance-of-object-based-representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ LLMs and the Abstraction and Reasoning Corpus: Successes, Failures, and the Importance of Object-based Representations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addressing-the-abstraction-and-reasoning-corpus-via-procedural-example-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ Addressing the Abstraction and Reasoning Corpus via Procedural Example Generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communicating-natural-programs-to-humans-and-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ Communicating Natural Programs to Humans and Machines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-the-paradox-of-learning-to-reason-from-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ On the Paradox of Learning to Reason from Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reasoning-abilities-of-large-language-models-in-depth-analysis-on-the-abstraction-and-reasoning-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reasoning Abilities of Large Language Models: In-Depth Analysis on the Abstraction and Reasoning Corpus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#large-language-models-are-not-strong-abstract-reasoners" class="md-nav__link">
+    <span class="md-ellipsis">
+      Large Language Models Are Not Strong Abstract Reasoners
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparing-humans-gpt-4-and-gpt-4v-on-abstraction-and-reasoning-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparing Humans, GPT-4, and GPT-4V On Abstraction and Reasoning Tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#large-language-models-as-general-pattern-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Large Language Models as General Pattern Machines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-large-language-models-solve-arc-visual-analogies-like-people-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do Large Language Models Solve ARC Visual Analogies Like People Do?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#large-language-model-as-a-system-of-multiple-expert-agents-an-approach-to-solve-the-abstraction-and-reasoning-corpus-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Large Language Model as a System of Multiple Expert Agents: An Approach to solve the Abstraction and Reasoning Corpus Challenge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generalized-planning-for-the-abstraction-and-reasoning-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generalized Planning for the Abstraction and Reasoning Corpus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tackling-the-abstraction-and-reasoning-corpus-arc-with-object-centric-models-and-the-mdl-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tackling the Abstraction and Reasoning Corpus (ARC) with Object-centric Models and the MDL Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-neurodiversity-inspired-solver-for-the-abstraction-and-reasoning-corpus-using-visual-imagery-and-program-synthesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Neurodiversity-Inspired Solver for the Abstraction and Reasoning Corpus Using Visual Imagery and Program Synthesis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphs-constraints-and-search-for-the-abstraction-and-reasoning-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphs, Constraints, and Search for the Abstraction and Reasoning Corpus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#teaching-large-language-models-to-reason-with-reinforcement-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Teaching Large Language Models to Reason with Reinforcement Learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-large-language-models-learn-independent-causal-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can Large Language Models Learn Independent Causal Mechanisms?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learn-abstraction-in-an-abstract-way-the-long-journey-ahead" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learn Abstraction in an Abstract Way: The Long Journey Ahead
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#videos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Videos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Videos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dwarkesh-patel-francois-chollet-llms-wont-lead-to-agi-1000000-prize-to-find-true-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ Dwarkesh Patel | Francois Chollet - LLMs won’t lead to AGI - $1,000,000 Prize to find true solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#machine-learning-street-talk-chollets-arc-challenge-current-winners" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ Machine Learning Street Talk | Chollet's ARC Challenge + Current Winners
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llms-as-a-system-to-solve-the-abstraction-and-reasoning-corpus-arc-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLMs as a system to solve the Abstraction and Reasoning Corpus (ARC) Challenge!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conclusions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definitions-of-abstraction-and-reasoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definitions of abstraction and reasoning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other links
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../modeling/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Modeling
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Modeling
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_01_few_shot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 1. Few-shot prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_02_learn_to_count/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 2. Learn to count
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_03_fine-tune_on_arc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 3. Fine-tune on ARC tasks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_04_test_time_fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 4. Test time fine-tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_05_search_for_smaller_llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 5. Search for smaller LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_06_ensemble_with_2020_solutions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 6. Ensemble with 2020 solution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_07_training_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 7. Training data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_08_code_improvements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 8. Code improvements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_09_improve_inference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 9. Improve inference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_10_improve_selection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 10. Improve response selection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_11_pseudo_beam_search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 11. Pseudo beam-search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_12_grid_representation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 12. Grid representation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_13_single_task_ttft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 13. Single task test-time fine-tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_14_speedup_training/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 14. Speedup training with unsloth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_15_study_data_scaling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 15. Study how well this method scales with data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_16_next_steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 16. Plan next steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_17_external_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 17. Revisit external training data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_18_submission_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 18. Train models for submission
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_20_bigger_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 20. Bigger models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_21_more_data_augmentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 21. More data augmentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_22_learning_inputs_distribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 22. Learning the inputs distribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_23_more_external_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 23. More external data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_24_overfit_to_the_train_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 24. Overfit to the train set
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_25_decouple_ft_and_ttft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 25. Decouple fine-tuning and test-time fine-tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_26_dawn_of_omni_arc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 26. Dawn of Omni-ARC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_27_fix_data_augmentation_bug/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 27. Fix data augmentation bug
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_28_optimal_train_duration_and_capacity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 28. Optimal train duration and capacity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_29_qwen25/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 29. Qwen 2.5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_30_optimal_number_predictions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 30. Optimal number of predictions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_31_train_submission_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 31. Train new submission models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_32_llama_32/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 32. Llama 3.2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_33_back_to_smollm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 33. Back to SmolLM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_34_developing_omni_arc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 34. Developing Omni-ARC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_35_optimize_batch_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 35. Optimize batch size
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_36_solving_evaluation_tasks_with_code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 36. Solving evaluation tasks with code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_37_optimize_code_generation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 37. Optimize code generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_38_make_non_instruct_models_great_again/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 38. Make non-instruct models great again
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_39_reduce_vllm_ram_usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 39. Reduce VLLM RAM usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_40_try_coding_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 40. Try coding models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_41_next_steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 41. Next steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_42_improve_omniarc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 42. Improve Omni-ARC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_43_train_a_verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 43. Train a verifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_44_learn_to_use_strong_compute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 44. Learn to use Strong Compute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_45_improve_verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 45. Improve the verifier approach
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_46_revisit_small_llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 46. Revisit small LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_47_select_instead_of_verify/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 47. Select instead of verify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_48_more_external_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 48. More External data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_49_smolLM2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 49. SmolLM2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_50_last_trainings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 50. Last trainings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modeling/Iteration_n/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration n. Iteration_title
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_Solution_Summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Solution Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Utils
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utils/00_Challenge_Workflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Challenge workflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utils/markdown_cheatsheet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Markdown cheatsheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utils/methodology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Methodology
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#papers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Papers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Papers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getting-50-sota-on-arc-agi-with-gpt-4o-by-ryan-greenblatt" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐⭐ Getting 50% (SoTA) on ARC-AGI with GPT-4o by Ryan Greenblatt
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⭐⭐ Getting 50% (SoTA) on ARC-AGI with GPT-4o by Ryan Greenblatt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#high-level-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      High level method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-are-the-returns-to-more-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are the returns to more sampling?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tricks-in-the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tricks in the solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chollet-reaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chollet reaction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implications-of-this-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implications of this work
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neural-networks-for-abstraction-and-reasoning-towards-broad-generalization-in-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ Neural networks for abstraction and reasoning: Towards broad generalization in machines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecuber-1st-place-solution-on-arc2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ Icecuber 1st place solution on ARC2020
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⭐ Icecuber 1st place solution on ARC2020">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implications-of-this-work_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implications of this work
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llms-and-the-abstraction-and-reasoning-corpus-successes-failures-and-the-importance-of-object-based-representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ LLMs and the Abstraction and Reasoning Corpus: Successes, Failures, and the Importance of Object-based Representations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addressing-the-abstraction-and-reasoning-corpus-via-procedural-example-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ Addressing the Abstraction and Reasoning Corpus via Procedural Example Generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communicating-natural-programs-to-humans-and-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ Communicating Natural Programs to Humans and Machines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-the-paradox-of-learning-to-reason-from-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ On the Paradox of Learning to Reason from Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reasoning-abilities-of-large-language-models-in-depth-analysis-on-the-abstraction-and-reasoning-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reasoning Abilities of Large Language Models: In-Depth Analysis on the Abstraction and Reasoning Corpus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#large-language-models-are-not-strong-abstract-reasoners" class="md-nav__link">
+    <span class="md-ellipsis">
+      Large Language Models Are Not Strong Abstract Reasoners
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparing-humans-gpt-4-and-gpt-4v-on-abstraction-and-reasoning-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparing Humans, GPT-4, and GPT-4V On Abstraction and Reasoning Tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#large-language-models-as-general-pattern-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Large Language Models as General Pattern Machines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-large-language-models-solve-arc-visual-analogies-like-people-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do Large Language Models Solve ARC Visual Analogies Like People Do?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#large-language-model-as-a-system-of-multiple-expert-agents-an-approach-to-solve-the-abstraction-and-reasoning-corpus-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Large Language Model as a System of Multiple Expert Agents: An Approach to solve the Abstraction and Reasoning Corpus Challenge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generalized-planning-for-the-abstraction-and-reasoning-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generalized Planning for the Abstraction and Reasoning Corpus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tackling-the-abstraction-and-reasoning-corpus-arc-with-object-centric-models-and-the-mdl-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tackling the Abstraction and Reasoning Corpus (ARC) with Object-centric Models and the MDL Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-neurodiversity-inspired-solver-for-the-abstraction-and-reasoning-corpus-using-visual-imagery-and-program-synthesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Neurodiversity-Inspired Solver for the Abstraction and Reasoning Corpus Using Visual Imagery and Program Synthesis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphs-constraints-and-search-for-the-abstraction-and-reasoning-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphs, Constraints, and Search for the Abstraction and Reasoning Corpus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#teaching-large-language-models-to-reason-with-reinforcement-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Teaching Large Language Models to Reason with Reinforcement Learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-large-language-models-learn-independent-causal-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can Large Language Models Learn Independent Causal Mechanisms?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learn-abstraction-in-an-abstract-way-the-long-journey-ahead" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learn Abstraction in an Abstract Way: The Long Journey Ahead
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#videos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Videos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Videos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dwarkesh-patel-francois-chollet-llms-wont-lead-to-agi-1000000-prize-to-find-true-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ Dwarkesh Patel | Francois Chollet - LLMs won’t lead to AGI - $1,000,000 Prize to find true solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#machine-learning-street-talk-chollets-arc-challenge-current-winners" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐ Machine Learning Street Talk | Chollet's ARC Challenge + Current Winners
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llms-as-a-system-to-solve-the-abstraction-and-reasoning-corpus-arc-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLMs as a system to solve the Abstraction and Reasoning Corpus (ARC) Challenge!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conclusions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definitions-of-abstraction-and-reasoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definitions of abstraction and reasoning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other links
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="state-of-the-art">State of the art</h1>
+<!--- --->
+
+<h2 id="papers">Papers</h2>
+<p>These are the sources of papers used:</p>
+<ul>
+<li><a href="https://scholar.google.com/scholar?start=10&amp;hl=en&amp;scisbd=1&amp;as_sdt=2005&amp;sciodt=0,5&amp;cites=645844335140263496&amp;scipsc=">Citations to the "On the measure of intelligence" paper on Google Scholar</a></li>
+<li><a href="https://arxiv.org/search/advanced?advanced=&amp;terms-0-operator=AND&amp;terms-0-term=abstraction+reasoning+corpus&amp;terms-0-field=title&amp;classification-physics_archives=all&amp;classification-include_cross_list=include&amp;date-filter_by=all_dates&amp;date-year=&amp;date-from_date=&amp;date-to_date=&amp;date-date_type=submitted_date&amp;abstracts=show&amp;size=50&amp;order=-announced_date_first">Papers on Arxiv with <code>abstraction reasoning corpus</code> in the title</a></li>
+<li><a href="https://arcprize.org/guide#arc-agi-resources">ARC prize resources</a></li>
+</ul>
+<h3 id="getting-50-sota-on-arc-agi-with-gpt-4o-by-ryan-greenblatt">⭐⭐ <a href="https://redwoodresearch.substack.com/p/getting-50-sota-on-arc-agi-with-gpt">Getting 50% (SoTA) on ARC-AGI with GPT-4o by Ryan Greenblatt</a></h3>
+<blockquote>
+<p>I recently got to 50% accuracy on the public test set for ARC-AGI by having GPT-4o generate a huge number of Python implementations of the transformation rule (around 8,000 per problem) and then selecting among these implementations based on correctness of the Python programs on the examples (if this is confusing, go to the next section). I use a variety of additional approaches and tweaks which overall substantially improve the performance of my method relative to just sampling 8,000 programs.</p>
+</blockquote>
+<p>As Chollet says in the section below, this would not be SOTA but it is a great result.</p>
+<blockquote>
+<p>The additional approaches and tweaks are:</p>
+<ul>
+<li>I use <strong>few-shot prompts</strong> which perform meticulous <strong>step-by-step reasoning</strong>.</li>
+<li>I have GPT-4o try to <strong>revise</strong> some of the implementations after seeing what they actually output on the provided examples.</li>
+<li>I do some feature engineering, providing the model with considerably <strong>better grid representations</strong> than the naive approach of just providing images. (See below for details on what a “grid” in ARC-AGI is.)</li>
+<li>I used specialized few-shot prompts for the two main buckets of ARC-AGI problems (cases where the grid size changes vs doesn’t).</li>
+</ul>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>The main idea behind my solution is very simple: get GPT-4o to generate around 8,000 python programs which attempt to implement the transformation, select a program which is right on all the examples (usually there are 3 examples), and then submit the output this function produces when applied to the additional test input(s). I show GPT-4o the problem as images and in various ascii representations.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>My approach is similar in spirit to the approach applied in AlphaCode in which a model generates millions of completions attempting to solve a programming problem and then aggregates over them to determine what to submit.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>Actually getting to 50% with this main idea took me about 6 days of work. This work includes constructing few-shot prompts, building better text representations of these grids, iterating against the train set, and implementing various other tweaks to improve performance</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/rgreenblatt/arc_draw_more_samples_pub">Github ARC Draw more samples</a><ul>
+<li><a href="https://github.com/rgreenblatt/arc_draw_more_samples_pub/blob/dc4b6080574183b690429a176d5f18437ecf7036/arc_solve/reasoning_and_labels.py">Few shot prompts with reasoning and python code</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="high-level-method">High level method</h4>
+<ul>
+<li>Provide the ARC-AGI problem to GPT-4o, with both an image representation and with various text representations for each grid in the problem. The text representations include showing which cells are occupied by different connected components of colors and showing diffs between the input and output (in cases where the grid shapes are the same).</li>
+<li>Instruct GPT-4o to reason about what the transformation is, reason how to implement the transformation as code, and then finally actually implement the transformation in code.</li>
+<li>Use a few-shot prompt with several carefully handwritten examples of step-by-step reasoning to actually get GPT-4o to do this reasoning somewhat effectively. The resulting prompt is usually around 30k tokens long including images.<ul>
+<li>We actually have a pair of few-shot prompts: one prompt for when the grid size changes (in any of the examples) and one for when it doesn’t.</li>
+<li>We also ensemble over multiple pairs of few-shot prompts. This doesn’t help much, but I already had the samples in the cache.</li>
+</ul>
+</li>
+<li>Sample vast, vast numbers of completions (~5,000 per problem) from GPT-4o.</li>
+<li>Take the most promising 12 completions for each problem, and then try to fix each by showing GPT-4o what this program actually outputs on the examples, and then asking GPT-4o to revise the code to make it correct. We sample ~3,000 completions that attempt to fix per problem in total across these 12 starting implementations.<ul>
+<li>We use a few-shot prompt for revisions with step-by-step reasoning.</li>
+<li>We also have a text representation which shows the diff between the actual output and the expected output.</li>
+</ul>
+</li>
+<li>Then, we select 3 submissions to make based on a majority vote over programs which get the examples correct. (In the case where we don’t have 3 distinct submissions from programs which get the examples right, we apply some heuristics to pick a submission, but this doesn’t matter much.).</li>
+</ul>
+<p>In addition to iterating on the training set, I also did a small amount of iteration on a 100 problem subset of the public test set. All the results I presented here were computed on a different subset of the public test set that does not overlap.  The train and test set are not IID, and the test set is both much harder and somewhat qualitatively different (I think), so using a subset of the test set for iteration was useful for quickly getting a better sense of how things change with difficulty. It's unfortunate that these sets aren’t IID: it makes iteration harder and more confusing.</p>
+<h4 id="what-are-the-returns-to-more-sampling">What are the returns to more sampling?</h4>
+<p><img alt="returns to more sampling" src="../res/2024-06-27-08-32-25.png" /></p>
+<blockquote>
+<p>There appears to be a relatively clean scaling law. The fit is in terms of log base 2. So, it indicates an additional 3% correct per doubling of k</p>
+</blockquote>
+<h4 id="tricks-in-the-solution">Tricks in the solution</h4>
+<ul>
+<li>Using a better representation is crucial, allows to sample 10 times more efficiently</li>
+<li>Also revision of the proposed solutions is crucial, allows to sample 10 times more efficiently</li>
+<li>So without revision and good representation it would have needed close to 1M samples instead of 8k</li>
+</ul>
+<h4 id="chollet-reaction"><a href="https://x.com/fchollet/status/1803174151680569570">Chollet reaction</a></h4>
+<blockquote>
+<p>SotA on the public evaluation set of ARC-AGI is ~60% for a heterogenous ensemble, 54% for a single approach. But what really matters is the private leaderboard on Kaggle (33% there so far vs 85% needed to beat the challenge)</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>In general, we see 10-20 pts worse performance on the private test set compared to the public eval set. 
+This is likely in part due to information leak from the public tasks into the model (which can happen in a number of ways, including LLM pretraining, and tuning of an approach's knobs based on eval set performance, aka overfitting).
+This is <em>also</em> likely in part due to the fact that the eval set contains more "easy" tasks. The eval set and test set were not calibrated for difficulty. So while all tasks across the board are feasible for humans, the tasks in the test set may be harder on average. This was not intentional, and is likely either a fluke (there are only 100 tasks in the test set) or due to the test set having been created last.</p>
+</blockquote>
+<h4 id="implications-of-this-work">Implications of this work</h4>
+<p>The fact that they have to generate thousands of responses seems the typical tradeoff between train and inference compute. It is very likely that future and bigger models will need far less generations to achieve
+the same level of accuracy (see f.e. AlphaCode2 where they replaced PaLM by Gemini with great improvements. They could reach the performance of AlphaCode1 with 100 samples instead of 1e6 samples.)</p>
+<p>The fact that an LLM without fine-tuning can achieve such high score on the ARC dataset is a contradiction
+with the postulates of Chollet that say that LLM cannot do in-context learning.</p>
+<p>I believe this result is more impressive that MindsAI team because GPT4o was not fine-tuned for this task. The MindsAI team fine-tune a model on ARC like tasks and do test time fine-tuning on the test tasks.
+Thus considering the priors and experience of both models GPT4o is clearly more intelligent than MindsAI team model.</p>
+<p>There might be some risk of data contamination because the data is publicly available on Github. However the approach
+is not directly solving the task, but writing python code to solve the task. And that kind of data is not
+available to the best of my knowledge.</p>
+<h3 id="neural-networks-for-abstraction-and-reasoning-towards-broad-generalization-in-machines">⭐ <a href="https://arxiv.org/abs/2402.03507">Neural networks for abstraction and reasoning: Towards broad generalization in machines</a></h3>
+<p>Nicely written paper that tries to solve the ARC challenge with two methods:</p>
+<ol>
+<li>Dreamcoder. Is a method to create programs given a set of primitive functions</li>
+<li>LLMs. They show that using <code>transpose</code> and <code>rot90</code> augmentations can double the accuracy of the models. This highlights the sequential and non-2d nature of the typical LLM data.</li>
+</ol>
+<p>Results are weak and do not surpass the state of the art.</p>
+<blockquote>
+<p>Abstraction and reasoning - developing computer systems that can learn new concepts from a small number of examples, something that humans find relatively easy</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>We revisit whether new advances can allow computers to extrapolate to new concepts rather than merely interpolate.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>With only a handful of training examples per ARC task, and 10900 possible answers (of which exactly one gains credit), traditional machine learning (ML) methods that require large datasets have so far been unable to make progress.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>Analogy-making has been considered central to the notion of intelligence. When presented with novel situations (for example; opening a new type of door, or conversing about a new topic), humans effortlessly solve these situations by creating analogies to previous experiences and concepts.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>Chollet notes that while excellent progress has been made in solving specific tasks to approach or surpass human-level (such as detecting cats and playing Go), these models generally require a huge amount of training and are limited to performing well on situations that they were trained on. The failure of neural network models to perform when extrapolating outside the training data has been widely explored</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>Inductive programming describes algorithms that derive programs that explain a series of examples.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>when a person attempts an ARC task, we see a similar process: one tries to abstract the
+training tasks to a ‘program’ (generally in natural language in one’s head, for example “rotate by 90
+degrees”); human intuition is the search procedure.</p>
+</blockquote>
+<h3 id="icecuber-1st-place-solution-on-arc2020">⭐ <a href="https://www.kaggle.com/competitions/abstraction-and-reasoning-challenge/discussion/154597">Icecuber 1st place solution on ARC2020</a></h3>
+<blockquote>
+<p>Unfortunately, I don't feel like my solution itself brings us closer to AGI. The main component is a DSL which applies up to 4 of 142 unary transformations (42 different functions, some have different variants). This DSL is solved by enumeration (exploiting duplicates) + a greedy stacking combiner. Everything is implemented efficiently in C++ (with no dependencies) and running in parallel.</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/top-quarks/ARC-solution">Icecuber solution repo</a></li>
+<li><a href="https://github.com/top-quarks/ARC-solution/blob/master/ARC-solution_documentation.pdf">Icecuber solution documentation</a></li>
+</ul>
+<blockquote>
+<p>I then noticed that <strong>distribution of training, evaluation and LB were quite different, so I decided the evaluation dataset was better used as training data</strong>. I hand-coded 100 evaluation tasks, which I used to add more transformations, and improve my DSL. I noticed that functions taking more than 1 argument were growing my search space super-exponentially, and that they usually just took either the input or output image size as second argument. This led me to only keep unary functions. I also added lists of images as a type, to solve tasks that required looping. I also started representing my DSL in a DAG to exploit duplicates (multiple transformations giving same output). This required me to rewrite most of my code, but gave me 14 tasks on LB.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>I double the sample inputs by adding the same tasks flipped along a diagonal. This makes for 3 full runs (depth 3 for performance reasons): one normal, and one for each diagonal. This simple addition moved me from 17 to 21 tasks solved on the LB (and hence helped more than all the optimizations needed for doing depth 4 search instead of depth 3).</p>
+</blockquote>
+<h4 id="implications-of-this-work_1">Implications of this work</h4>
+<p>This work shows that at least 20% of the test set tasks can be solved using just 3-4 transformations (because the search was limited to a depth of 3-4).</p>
+<p>The ARC set can be solved given enough compute and a complete DSL. This will be a brute-force approach
+to the problem that won't be intelligent. The intelligence lies in the developer that produced the
+complete DSL and the search algorithm. This system won't generalize to new problems.</p>
+<p>The world is too complex to have a DSL, that's why we write new python code for each application.
+The way we solve the ARC is important, we have to design the more general solution possible.</p>
+<h3 id="llms-and-the-abstraction-and-reasoning-corpus-successes-failures-and-the-importance-of-object-based-representations">⭐ <a href="https://arxiv.org/abs/2305.18354v2">LLMs and the Abstraction and Reasoning Corpus: Successes, Failures, and the Importance of Object-based Representations</a></h3>
+<p>This paper highlights the fact that LLMs have difficulties understanding the 2d nature of the ARC dataset.</p>
+<ol>
+<li>Evaluate the model with few-shot prompt as it is my idea, giving reasoning as input. However I don't believe this is done as extensively as I want to do myself</li>
+<li>Create a 1D ARC dataset where the models perform better</li>
+<li>Using a object based representation of the problem where GPT4 solves 23/50 problems (an easy subset from ARC)</li>
+</ol>
+<p>What would be the best input for the LLMs to understand 2d structures?
+I could fine-tune a model to do row, col, diagonal addition or presence detection. This might force the model to create a great representation for the problem.</p>
+<blockquote>
+<p>Reasoning is using evidence, arguments, and logic to arrive at conclusions or make judgments</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>A closer examination of the tasks that GPT-4 solved correctly using the direct-grid approach reveals some interesting patterns in the reasoning provided by the model. Out of the 13 tasks that were correctly solved, only three tasks were accompanied by the correct reasoning steps.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>To address the challenges we have identified thus far and to enhance LLM performance, we propose the integration of an external tool to aid in producing an object representation of a task. More specifically, we leverage the ARGA algorithm to execute object abstraction before prompting LLMs for the solution.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>Our exploration started with a straightforward, grid-based textual encoding approach, which revealed that GPT struggles due to the non-sequential representation of complex objects in text. We then introduced the 1D-ARC, a simplified, single-dimensional version of the ARC. By reducing the task complexity and dimensionality, we aimed to make ARC tasks more approachable for LLMs. Our evaluations on the 1D-ARC indicated improvements in performance but also highlighted that simplification alone could not bridge all the gaps in GPT’s reasoning processes. In the third phase of our exploration, we adopted an object-based approach, integrating an external tool, the ARGA framework, to assist in object abstraction. This led to significant improvements in GPT’s problem-solving abilities, reaffirming the importance of structured, object-based representations in complex reasoning tasks.</p>
+</blockquote>
+<h3 id="addressing-the-abstraction-and-reasoning-corpus-via-procedural-example-generation">⭐ <a href="https://arxiv.org/abs/2404.07353">Addressing the Abstraction and Reasoning Corpus via Procedural Example Generation</a></h3>
+<p>This paper presents the <a href="https://github.com/michaelhodel/re-arc">re-arc repo</a>, which allows to generate at least 10k new samples for each task in the ARC training dataset.</p>
+<p>Could I modify it to output text descriptions of the synthetic inputs? That could allow the model to learn a good representation of the grids and also to learn what the transformation is.</p>
+<blockquote>
+<p>The sample-efficiency of learning algorithms might be improved by building a curriculum that increases example difficulty over the course of training - as opposed to training on instances of the full range of difficulties throughout the entire training</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>Each generator is a standalone Python function merely making use of the DSL and functions from the random module from the standard library. The median generator consists of 40 lines of code and uses 22 DSL primitive calls and 10 calls to the random module</p>
+</blockquote>
+<p>It is curious that so many (22) primitive function calls are needed on median.</p>
+<p>My rough estimation of primitive functions in <a href="https://github.com/michaelhodel/arc-dsl">arc-dsl</a> is 160 (count the number of occurrences of <code>def</code>). We know that this set of primitives is complete for the train set, but is it for the evaluation and test set?</p>
+<h3 id="communicating-natural-programs-to-humans-and-machines">⭐ <a href="https://arxiv.org/abs/2106.07824">Communicating Natural Programs to Humans and Machines</a></h3>
+<p>This paper is very interesting, they supplement the ARC dataset with text descriptions.</p>
+<p>They argue that those natural descriptions are equivalent to the input/output examples, it's just another way of expressing the same message.</p>
+<blockquote>
+<p>We present LARC, the Language-complete ARC: a collection of natural language descriptions by a group of human participants who instruct each other on how to solve ARC tasks using language alone, which contains successful instructions for 88% of the ARC tasks. We analyze the collected instructions as ‘natural programs’, finding that while they resemble computer programs, they are distinct in two ways: First, they contain a wide range of primitives; Second, they frequently leverage communicative strategies beyond directly executable codes. We demonstrate that these two distinctions prevent current program synthesis techniques from leveraging LARC to its full potential, and give concrete suggestions on how to build the next-generation program synthesizers.</p>
+</blockquote>
+<p><img alt="three kinds of programs" src="../res/2024-06-26-18-06-01.png" /></p>
+<blockquote>
+<p>In this work, we adopt the Wizard-of-Oz approach by using a human as an interpreter of natural language instructions (Fig 3 top-left). We define a natural program as instructions constructed by a person that can be interpreted by another person to produce a specific output. This program is natural–it can be understood by speakers of the language4 without a prior consensus–but behaves as a program, in that it produces a definitive output, which can be unambiguously checked for correctness. For instance, <strong>the original ARC tasks are natural programs: Given a program consisting of input-output examples, a fellow human can readily interpret this program to produce an output on a new input, which can be checked for correctness</strong>. By starting with (linguistic) natural programs, one can directly observe the set of concepts and strategies necessary to master a domain (such as ARC), without committing to a specific interpreter.</p>
+</blockquote>
+<p>This is really interesting: it implies that a program defined with natural language is equivalent to a program
+defined with input-output samples in the ARC dataset.
+Thus translating an ARC task to a text description would not be necessary, although it would be helpful
+to verify that the task has been understood.</p>
+<p>However results do not show a big benefit from using the text descriptions.</p>
+<h3 id="on-the-paradox-of-learning-to-reason-from-data">⭐ <a href="https://arxiv.org/abs/2205.11502">On the Paradox of Learning to Reason from Data</a></h3>
+<blockquote>
+<p>Logical reasoning is needed in a wide range of NLP tasks. Can a BERT model be trained end-to-end to solve logical reasoning problems presented in natural language? We attempt to answer this question in a confined problem space where there exists a set of parameters that perfectly simulates logical reasoning. We make observations that seem to contradict each other: BERT attains near-perfect accuracy on in-distribution test examples while failing to generalize to other data distributions over the exact same problem space. Our study provides an explanation for this paradox: instead of learning to emulate the correct reasoning function, BERT has in fact learned statistical features that inherently exist in logical reasoning problems. We also show that it is infeasible to jointly remove statistical features from data, illustrating the difficulty of learning to reason in general. Our result naturally extends to other neural models and unveils the fundamental difference between learning to reason and learning to achieve high performance on NLP benchmarks using statistical features.</p>
+</blockquote>
+<p>This paper shows that an LLM is able to achieve high performance on a NLP reasoning benchmark without learning to reason. Instead it uses statistical features and when faced with a different data distribution it does not generalize well.</p>
+<p>This is a very interesting result, but I have one big criticism:</p>
+<p>Would the results be the same if instead of just giving the solution the model would have been given the reasoning traces? I believe that to teach to reason we have to go "step by step".</p>
+<h3 id="reasoning-abilities-of-large-language-models-in-depth-analysis-on-the-abstraction-and-reasoning-corpus"><a href="https://arxiv.org/abs/2403.11793">Reasoning Abilities of Large Language Models: In-Depth Analysis on the Abstraction and Reasoning Corpus</a></h3>
+<p>This papers studies if LLMs are good at the three elements of Language of Thought Hypothesis:</p>
+<ol>
+<li>Logical Coherence: Using prompting techniques, LLMs are set to solve ARC tasks. By analyzing the types of ARC tasks it can solve and the process of solving them, we aim to determine whether LLMs are capable of logical reasoning and whether its logic is consistent.</li>
+<li>Compositionality: ARC tasks are known to be solvable through the application of step-by-step functions. With such functions provided, we aim to ascertain whether LLMs can identify the combinations of functions that are needed to solve a task. This process can be broken down into two parts: understanding how LLMs manipulate the problem input and determining whether they can achieve the desired results through multiple steps of manipulation.</li>
+<li>Productivity: We tested if LLMs can create new input-output pairs for ARC tasks. We selected tasks with multiple inputs leading to the same output, devised prompts for inverse transformation, and assessed LLMs’ ability to generate varied inputs based on these prompts.</li>
+</ol>
+<p><img alt="Three concepts of the Language of Thought Hypothesis" src="../res/2024-06-26-18-02-42.png" /></p>
+<p>It finds that current LLMs are weak at all the three elements.</p>
+<h3 id="large-language-models-are-not-strong-abstract-reasoners"><a href="https://arxiv.org/abs/2305.19555">Large Language Models Are Not Strong Abstract Reasoners</a></h3>
+<p>Results on ARC challenge are very weak, but they don't add task descriptions that I believe would have helped the models (in addition to few-shot prompting)</p>
+<blockquote>
+<p>Abstract reasoning is a fundamental task for cognition, consisting of finding and applying a general pattern from few data</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>We perform extensive evaluations of state-of-the-art LLMs, showing that they currently achieve very limited performance in contrast with other natural language tasks, even when applying techniques that have been shown to improve performance on other NLP tasks.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>In this paper, we present what is, to the best of our knowledge, the first extensive evaluation of Large Language Models for abstract reasoning. We show that LLMs do not perform well on all types of tasks, although not all models are equally poor. Prompting and refinement techniques that improve performance on NLP tasks do not work for abstract reasoning. Our experiments show that the bottleneck in the performance lies in the recognition of new unseen abstract patterns and not in a lack of understanding of the task or the prompt. These results hold in discriminative settings, where the models must find the correct answer within a small set of propositions. A qualitative study of selected failure cases in the appendix further reveals that models tend to reason inconsistently and in a shallow way. We hypothesize that current self-supervised autoregressive LLMs lack fundamental properties for strong abstract reasoning tasks and human-like cognition. We posit that methods based on causal reasoning and program induction could help improve the reasoning abilities of neural networks.</p>
+</blockquote>
+<h3 id="comparing-humans-gpt-4-and-gpt-4v-on-abstraction-and-reasoning-tasks"><a href="https://arxiv.org/abs/2311.09247">Comparing Humans, GPT-4, and GPT-4V On Abstraction and Reasoning Tasks</a></h3>
+<p>This paper shows an evaluation of GPT4 on ConceptARC dataset, an easier version of ARC dataset that has well defined categories.</p>
+<p>However there isn't task description so that is equivalent to trying to learn MATH problems with just the answer and not the reasoning.</p>
+<blockquote>
+<p>The defining characteristic of abstract reasoning is the ability to induce a rule or pattern from limited data or experience and to apply this rule or pattern to new, unseen situations.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>Here, we performed evaluations using a more informative, one-shot prompt for text versions of tasks, and experimented with similar zero- and one-shot prompts for the multimodal case in which task-grids were given as images. We found that our more informative one-shot prompt improved GPT-4’s performance in the text case, but its performance remained well below that of humans and the special-purpose Kaggle-ARC program.</p>
+</blockquote>
+<h3 id="large-language-models-as-general-pattern-machines"><a href="https://arxiv.org/abs/2307.04721">Large Language Models as General Pattern Machines</a></h3>
+<p>This seems to be one of the initial evaluations of ARC using LLMs. The results are modest, but they show they can solve the problems for arbitrary symbols (not just 0-9 but any symbol)</p>
+<blockquote>
+<p>The capacity of LLMs to act as general pattern machines is driven by their ability to perform in-context learning on sequences of numeric or arbitrary tokens.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>Observation: consistent tokenization matters.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>Observation: token mapping invariance. The hypothesis that LLMs can serve as general pattern machines stems from the observation that they can still solve a non-trivial number of ARC problems using alphabets A sampled randomly from the LLM’s token vocabulary.</p>
+</blockquote>
+<h3 id="do-large-language-models-solve-arc-visual-analogies-like-people-do"><a href="https://arxiv.org/abs/2403.09734">Do Large Language Models Solve ARC Visual Analogies Like People Do?</a></h3>
+<p>They create  a very simple version of ARC challenge for kids. They compare the results between kids and LLMs.</p>
+<p>Not very useful for our task, we need to solve the real and difficult one.</p>
+<h3 id="large-language-model-as-a-system-of-multiple-expert-agents-an-approach-to-solve-the-abstraction-and-reasoning-corpus-challenge"><a href="https://arxiv.org/abs/2310.05146">Large Language Model as a System of Multiple Expert Agents: An Approach to solve the Abstraction and Reasoning Corpus Challenge</a></h3>
+<p>They use GPT4 to write python code to solve the tasks. Is similar to the Ryan's approach but with less computation.</p>
+<p>It's a bit weird that they make some proposals but do not implement all of them.</p>
+<p>Input tokens is a limitation because at the time of the publication GPT4 could only receive 8k tokens. In Kaggle we could have a similar limitation due to GPU RAM memory.</p>
+<blockquote>
+<p>While GPT-4 has proven to be a general purpose solver, being (currently) a text-based model, GPT-4 lacks some of the innate human priors necessary to solve the ARC challenge. For example, GPT-4 is not able to identify objects accurately from text alone.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>For our method, we use only three views - Grid View, Object View, Pixel View - and that has already achieved quite good results. In brief, Grid View provides the entire grid repre- sentation, except we change the pixel numbers to characters so that we do not bias GPT-4 to treat it as an arithmetic problem to perform arithmetic on the pixel values. This also has the added benefit of ensuring that GPT-4 has not seen the ARC tasks before as it is now of a different form. The Object View groups pixels that are contiguous together, so that they can be manipulated as a group. Pixel View gives the coordinates for each pixel, which can help with more fine-grained movement tasks or relational tasks between pixels.</p>
+</blockquote>
+<h3 id="generalized-planning-for-the-abstraction-and-reasoning-corpus"><a href="https://arxiv.org/abs/2401.07426">Generalized Planning for the Abstraction and Reasoning Corpus</a></h3>
+<p>Another paper that uses the DSL approach, but from the perspective of planning. It achieves slightly better results than icecuber and ARGA.</p>
+<h3 id="tackling-the-abstraction-and-reasoning-corpus-arc-with-object-centric-models-and-the-mdl-principle"><a href="https://arxiv.org/abs/2311.00545">Tackling the Abstraction and Reasoning Corpus (ARC) with Object-centric Models and the MDL Principle</a></h3>
+<p>This paper proposes to search a representation of the grids using the Minimun Description Length (MDL) principle. Then it searches a program to transform the input into the output.
+So it does not only use a DSL but also a representation. Patterns + Functions.</p>
+<p>It scores very poorly on private test set (2%)</p>
+<h3 id="a-neurodiversity-inspired-solver-for-the-abstraction-and-reasoning-corpus-using-visual-imagery-and-program-synthesis"><a href="https://arxiv.org/abs/2302.09425">A Neurodiversity-Inspired Solver for the Abstraction and Reasoning Corpus Using Visual Imagery and Program Synthesis</a></h3>
+<p>I haven't read the whole paper but it's just another DSL with some inspiration on Neurodiversity.</p>
+<p>It only achieves 2% on the private test set, which is omitted in the paper and only said that they got the 4th-place.</p>
+<h3 id="graphs-constraints-and-search-for-the-abstraction-and-reasoning-corpus"><a href="https://arxiv.org/abs/2210.09880">Graphs, Constraints, and Search for the Abstraction and Reasoning Corpus</a></h3>
+<p>This paper proposes to use an object centric representation of the grids based on graphs. Using that representation and a small Domain Specific Language (DSL) it is able to solve a comparable number of tasks to icecuber solution (but using only tasks about objects).</p>
+<p>This representation was later used on other papers as the input to GPT.</p>
+<h3 id="teaching-large-language-models-to-reason-with-reinforcement-learning"><a href="https://arxiv.org/abs/2403.04642">Teaching Large Language Models to Reason with Reinforcement Learning</a></h3>
+<p>This paper applies different RL methods to Llama 2 to improve reasoning at math problems. All RL methods have a similar result.</p>
+<p>They don't use ARC data at all.</p>
+<h3 id="can-large-language-models-learn-independent-causal-mechanisms"><a href="https://arxiv.org/abs/2402.02636">Can Large Language Models Learn Independent Causal Mechanisms?</a></h3>
+<p>A new architecture is proposed to enhance reasoning, but the results are similar to Llama 2.</p>
+<p>I don't believe this is relevant to solve the ARC challenge.</p>
+<h3 id="learn-abstraction-in-an-abstract-way-the-long-journey-ahead"><a href="https://openreview.net/forum?id=wHanWNJN0r">Learn Abstraction in an Abstract Way: The Long Journey Ahead</a></h3>
+<p>This paper is not relevant for the task.</p>
+<h2 id="repos">Repos</h2>
+<ul>
+<li><a href="https://github.com/michaelhodel/arc-dsl">arc-dsl</a> Domain Specific Language for the Abstraction and Reasoning Corpus by Michael Hodel, member of MindsAI team</li>
+<li><a href="https://github.com/michaelhodel/re-arc">https://github.com/michaelhodel/re-arc</a> RE-ARC: Reverse-Engineering the Abstraction and Reasoning Corpus by Michael Hodel, member of MindsAI team</li>
+<li><a href="https://github.com/rgreenblatt/arc_draw_more_samples_pub">ARC Draw more samples</a> is the repo for the article "Getting 50% (SoTA) on ARC-AGI with GPT-4o by Ryan Greenblatt"</li>
+<li><a href="https://github.com/you68681/GPAR">Generalized-Planning-for-the-Abstraction-and-Reasoning-Corpus</a></li>
+<li><a href="https://github.com/top-quarks/ARC-solution">Icecuber solution repo</a></li>
+</ul>
+<h2 id="videos">Videos</h2>
+<p>I could use <a href="https://downsub.com/">downsub</a> to get subtitles from a Youtube video.</p>
+<h3 id="dwarkesh-patel-francois-chollet-llms-wont-lead-to-agi-1000000-prize-to-find-true-solution">⭐ <a href="https://www.youtube.com/watch?v=UakqL6Pj9xo">Dwarkesh Patel | Francois Chollet - LLMs won’t lead to AGI - $1,000,000 Prize to find true solution</a></h3>
+<blockquote>
+<p>Each task in the ARC is novel. You cannot memorize the solution programs in advance. You have to synthesize a new program for each task.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>There are two definitions of reasoning:</p>
+<ol>
+<li>I have a set of program templates. When faced a new problem I fetch the right template and input the values to solve the problem. This is what GPT does. It needs some intelligence to fetch the correct template.</li>
+<li>When faced with a new puzzle there isn't a template available you have to synthesize on the fly
+a new program based on bits and pieces of existing programs that you have.</li>
+</ol>
+</blockquote>
+<h3 id="machine-learning-street-talk-chollets-arc-challenge-current-winners">⭐ <a href="https://youtu.be/jSAT_RuJ_Cg?si=-s_XpeeDA2BQYlVy">Machine Learning Street Talk | Chollet's ARC Challenge + Current Winners</a></h3>
+<blockquote>
+<p>Basically that we use so many training examples.
+It's it's not to necessarily teach it so many concepts.
+It's to teach it a space around the concepts and to also prevent it
+from kind of using the shortcuts that the models are prone to.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>Ideally we would train a model on internet data and generalize to the ARC dataset, that's what Chollet would love to see.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>So I just figured, okay, how well could we do?
+Uh, even just something very simple, like learning a task in isolation.
+If we had an unlimited number of examples for a given task.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>Probably 20 different kind of many experiments in formatting the data in various ways.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>If you train a model on the re-arc dataset you will get like 1% on the test set. But if you apply their
+techniques of active inference the score will increase to 23%</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>There are some scaling laws that suggest that the bigger the model the less test data needs to learn</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>The DSL has 160 functions, but the author believes it could rewrite it to be just 30</p>
+</blockquote>
+<p>Their method is:</p>
+<ol>
+<li>Fine-tune an LLM on augmented ARC tasks. Probably on the re-arc dataset, maybe a bigger version of it.</li>
+<li>On inference they augment the test samples (I don't know how) and fine-tune the LLM again on those tasks</li>
+<li>Make predictions with the LLM</li>
+</ol>
+<p><a href="https://lab42.global/community-interview-jack-cole/">Test-Time Augmentation to solve ARC, interview with Jack Cole</a> Almost no details about the approach.</p>
+<h3 id="llms-as-a-system-to-solve-the-abstraction-and-reasoning-corpus-arc-challenge"><a href="https://www.youtube.com/watch?v=plVRxP8hQHY">LLMs as a system to solve the Abstraction and Reasoning Corpus (ARC) Challenge!</a></h3>
+<p>TODO:</p>
+<h2 id="conclusions">Conclusions</h2>
+<ul>
+<li>Problem representation is very relevant. Ryan Greenblatt and Jack Cole mention they have worked to create
+  a good problem representation.</li>
+<li>It is likely that the MindsAI team is expanding re-arc to the evaluation dataset, or maybe to synthesize
+  new tasks.</li>
+</ul>
+<h3 id="definitions-of-abstraction-and-reasoning">Definitions of abstraction and reasoning</h3>
+<blockquote>
+<p>Abstract reasoning is a fundamental task for cognition, consisting of finding and applying a general pattern from few data</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>The defining characteristic of abstract reasoning is the ability to induce a rule or pattern from limited data or experience and to apply this rule or pattern to new, unseen situations.</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>Abstraction and reasoning - developing computer systems that can learn new concepts from a small number of examples, something that humans find relatively easy</p>
+</blockquote>
+<!--- --->
+
+<blockquote>
+<p>Reasoning is a knowledge acquisition efficiency</p>
+</blockquote>
+<h2 id="other-links">Other links</h2>
+<ul>
+<li><a href="https://lab42.global/community-2023-july-arc-sota/">https://lab42.global/community-2023-july-arc-sota/</a></li>
+<li><a href="https://rdi.berkeley.edu/llm-agents/f24v">Large Language Model Agents</a></li>
+<li><a href="https://github.com/richemslie/McARGA">Monte Carlo - Abstract Reasoning with Graph Abstractions</a></li>
+<li><a href="https://github.com/neoneye/simon-arc-lab">Simon ARC Lab</a></li>
+<li><a href="https://github.com/neoneye/arc-notes/tree/main">Simon notes</a></li>
+</ul>
+<h2 id="todo">TODO</h2>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled checked/> Jack Cole approach (active inference)</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Buck approach (write python programs with GPT4o)</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Icecuber approach (DSL): https://www.kaggle.com/competitions/abstraction-and-reasoning-challenge/discussion/154597</li>
+<li class="task-list-item"><input type="checkbox" disabled/> What is the best way to encode 2d information for an LLM like Llama3?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> How can we learn from few examples? Do we need a good representation of the data? Why ML methods need huge datasets? That is where the priors kick in, those priors influence the representation of the data.</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Search more relevant papers<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled checked/> Citations from 2024</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Papers with Abstraction and Reasoning Corpus in the title</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Read Kaggle's forum to see if more relevant papers were added</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Links from https://arcprize.org/guide</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Contrastive learning. Can a model predict if two input/output pairs belong to the same task?</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    2024-09-18
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/guillermobarbadillo/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/guille_bar" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/channel/UCOHmUwHnd2hmUpiDzaQ1Isg" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305m-317.51 213.508V175.185l142.739 81.205z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.kaggle.com/ironbar" target="_blank" rel="noopener" title="www.kaggle.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+        <script src="../javascript/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

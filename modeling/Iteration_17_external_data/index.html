@@ -1,0 +1,2803 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ironbar.github.io/arc24/modeling/Iteration_17_external_data/">
+      
+      
+        <link rel="prev" href="../Iteration_16_next_steps/">
+      
+      
+        <link rel="next" href="../Iteration_18_submission_models/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+    
+    
+      
+        <title>Iteration 17. Revisit external training data - arc24</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#iteration-17-revisit-external-training-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="arc24" class="md-header__button md-logo" aria-label="arc24" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            arc24
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Iteration 17. Revisit external training data
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ironbar/arc24" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../01_Business_Understanding/" class="md-tabs__link">
+        
+  
+    
+  
+  Business Understanding
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../02_Data_Understanding/" class="md-tabs__link">
+        
+  
+    
+  
+  Data Understanding
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../03_State_of_the_art/" class="md-tabs__link">
+        
+  
+    
+  
+  State of the art
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Modeling
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../05_Solution_Summary/" class="md-tabs__link">
+        
+  
+    
+  
+  Solution Summary
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../utils/00_Challenge_Workflow/" class="md-tabs__link">
+          
+  
+    
+  
+  Utils
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="arc24" class="md-nav__button md-logo" aria-label="arc24" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    arc24
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ironbar/arc24" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Business_Understanding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Business Understanding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Data_Understanding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Understanding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_State_of_the_art/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    State of the art
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Modeling
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Modeling
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_01_few_shot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 1. Few-shot prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_02_learn_to_count/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 2. Learn to count
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_03_fine-tune_on_arc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 3. Fine-tune on ARC tasks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_04_test_time_fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 4. Test time fine-tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_05_search_for_smaller_llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 5. Search for smaller LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_06_ensemble_with_2020_solutions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 6. Ensemble with 2020 solution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_07_training_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 7. Training data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_08_code_improvements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 8. Code improvements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_09_improve_inference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 9. Improve inference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_10_improve_selection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 10. Improve response selection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_11_pseudo_beam_search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 11. Pseudo beam-search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_12_grid_representation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 12. Grid representation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_13_single_task_ttft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 13. Single task test-time fine-tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_14_speedup_training/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 14. Speedup training with unsloth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_15_study_data_scaling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 15. Study how well this method scales with data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_16_next_steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 16. Plan next steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Iteration 17. Revisit external training data
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 17. Revisit external training data
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motivation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reverse-arc-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reverse ARC dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-inference-deterministic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Is inference deterministic?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-external-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      More external datasets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uncertainty-in-the-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uncertainty in the evaluation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variability-on-model-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variability on model training
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variability on model training">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-new-partition-700-train-100-val" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using new partition (700 train, 100 val)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-original-partition-400-train-400-eval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using original partition (400 train, 400 eval)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-the-best-data-for-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the best data for training?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submission-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Submission results
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_18_submission_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 18. Train models for submission
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_20_bigger_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 20. Bigger models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_21_more_data_augmentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 21. More data augmentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_22_learning_inputs_distribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 22. Learning the inputs distribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_23_more_external_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 23. More external data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_24_overfit_to_the_train_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 24. Overfit to the train set
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_25_decouple_ft_and_ttft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 25. Decouple fine-tuning and test-time fine-tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_26_dawn_of_omni_arc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 26. Dawn of Omni-ARC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_27_fix_data_augmentation_bug/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 27. Fix data augmentation bug
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_28_optimal_train_duration_and_capacity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 28. Optimal train duration and capacity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_29_qwen25/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 29. Qwen 2.5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_30_optimal_number_predictions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 30. Optimal number of predictions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_31_train_submission_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 31. Train new submission models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_32_llama_32/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 32. Llama 3.2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_33_back_to_smollm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 33. Back to SmolLM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_34_developing_omni_arc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 34. Developing Omni-ARC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_35_optimize_batch_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 35. Optimize batch size
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_36_solving_evaluation_tasks_with_code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 36. Solving evaluation tasks with code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_37_optimize_code_generation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 37. Optimize code generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_38_make_non_instruct_models_great_again/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 38. Make non-instruct models great again
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_39_reduce_vllm_ram_usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 39. Reduce VLLM RAM usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_40_try_coding_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 40. Try coding models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_41_next_steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 41. Next steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_42_improve_omniarc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 42. Improve Omni-ARC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_43_train_a_verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 43. Train a verifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_44_learn_to_use_strong_compute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 44. Learn to use Strong Compute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_45_improve_verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 45. Improve the verifier approach
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_46_revisit_small_llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 46. Revisit small LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_47_select_instead_of_verify/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 47. Select instead of verify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_48_more_external_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 48. More External data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_49_smolLM2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 49. SmolLM2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_50_last_trainings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 50. Last trainings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_n/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration n. Iteration_title
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Solution_Summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Solution Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Utils
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/00_Challenge_Workflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Challenge workflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/markdown_cheatsheet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Markdown cheatsheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/methodology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Methodology
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motivation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reverse-arc-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reverse ARC dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-inference-deterministic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Is inference deterministic?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-external-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      More external datasets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uncertainty-in-the-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uncertainty in the evaluation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variability-on-model-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variability on model training
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variability on model training">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-new-partition-700-train-100-val" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using new partition (700 train, 100 val)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-original-partition-400-train-400-eval" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using original partition (400 train, 400 eval)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-the-best-data-for-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is the best data for training?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submission-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Submission results
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="iteration-17-revisit-external-training-data">Iteration 17. Revisit external training data</h1>
+<p><em>02-09-2024</em></p>
+<h2 id="goal">Goal</h2>
+<p>Add external data to the current training data and see if it improves.</p>
+<h2 id="motivation">Motivation</h2>
+<p>We have made an experiment showing that the model should scale very well when adding new tasks to training.
+Additionally we have discovered that validation loss is not a good proxy. Thus we have to <a href="../Iteration_07_training_data/">revisit</a> the experiments
+we did with external data.</p>
+<h2 id="development">Development</h2>
+<p>The baseline will be the model trained for 6k steps just on the original ARC tasks. We will run experiments
+adding different data and evaluate to see if there is improvement.</p>
+<h3 id="reverse-arc-dataset">Reverse ARC dataset</h3>
+<p>Let's loop over all the ARC train tasks and collect the task ids of the tasks that could be reversed (going from the output to the input).</p>
+<p>One way to do that would be to use the website and manually copy the ids of the tasks that could be reversed.
+However that involves many manual steps. I would rather create a simple jupyter notebook interface
+to do that. That could be the base for future work in task generation.</p>
+<h3 id="is-inference-deterministic">Is inference deterministic?</h3>
+<p>I have the feeling that when running inference twice (due to errors or bugs) the results were exactly the same.
+That was not my intention, so I want to verify it and fix it.</p>
+<p>On a first step I'm going to run inference two times with the same number of predictions. I have verified that the predictions are exactly the same, thus I'm going to check if I'm fixing the random seed. Inference should be deterministic since the temperature is 0, but I'm doing data augmentation which I would like to be random.</p>
+<p>VLLM was setting the random seed when creating the LLM, thus I have made a small modification to manually set my seed after that.</p>
+<h3 id="more-external-datasets">More external datasets</h3>
+<p><a href="../../02_Data_Understanding/#external-data">External datasets are listed here</a></p>
+<ul>
+<li><a href="https://neoneye.github.io/arc/?dataset=ConceptARC">ConceptARC</a> looks nice</li>
+</ul>
+<h2 id="results">Results</h2>
+<h3 id="uncertainty-in-the-evaluation">Uncertainty in the evaluation</h3>
+<p>The evaluation has some uncertainty, and the training process another. I need to characterize both of them
+so I can take informed decisions. To characterize uncertainty on evaluation I have run the same evaluation without fixing the random seed, 64 predictions for each task were made (as I have been doing lately). I did the same
+experiment with two different models.</p>
+<table>
+<thead>
+<tr>
+<th>experiment</th>
+<th>accuracy</th>
+<th>correct_pixels</th>
+<th>correct_size</th>
+<th>pass_64</th>
+<th>unanswered</th>
+<th>pass_2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2.60%</td>
+<td>68.83%</td>
+<td>87.36%</td>
+<td>14.50%</td>
+<td>2.27%</td>
+<td>6.63%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2.68%</td>
+<td>69.30%</td>
+<td>87.77%</td>
+<td>14.00%</td>
+<td>2.17%</td>
+<td>9.18%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2.68%</td>
+<td>68.82%</td>
+<td>87.45%</td>
+<td>15.00%</td>
+<td>2.22%</td>
+<td>9.18%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2.72%</td>
+<td>68.92%</td>
+<td>87.53%</td>
+<td>17.50%</td>
+<td>2.18%</td>
+<td>8.67%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2.69%</td>
+<td>69.17%</td>
+<td>87.58%</td>
+<td>19.00%</td>
+<td>2.23%</td>
+<td>6.63%</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>2.67%</td>
+<td>69.01%</td>
+<td>87.54%</td>
+<td>16.00%</td>
+<td>2.22%</td>
+<td>8.06%</td>
+</tr>
+<tr>
+<td>std</td>
+<td>0.04%</td>
+<td>0.22%</td>
+<td>0.15%</td>
+<td>2.15%</td>
+<td>0.04%</td>
+<td>1.32%</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>experiment</th>
+<th>accuracy</th>
+<th>correct_pixels</th>
+<th>correct_size</th>
+<th>pass_64</th>
+<th>unanswered</th>
+<th>pass_2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2.57%</td>
+<td>68.44%</td>
+<td>86.52%</td>
+<td>13.00%</td>
+<td>2.44%</td>
+<td>7.65%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2.70%</td>
+<td>68.82%</td>
+<td>86.81%</td>
+<td>18.00%</td>
+<td>2.18%</td>
+<td>6.63%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2.40%</td>
+<td>68.48%</td>
+<td>86.60%</td>
+<td>13.50%</td>
+<td>2.39%</td>
+<td>7.65%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2.56%</td>
+<td>68.54%</td>
+<td>86.33%</td>
+<td>15.50%</td>
+<td>2.41%</td>
+<td>6.63%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2.50%</td>
+<td>68.42%</td>
+<td>86.36%</td>
+<td>15.50%</td>
+<td>2.36%</td>
+<td>7.65%</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>2.55%</td>
+<td>68.54%</td>
+<td>86.52%</td>
+<td>15.10%</td>
+<td>2.35%</td>
+<td>7.24%</td>
+</tr>
+<tr>
+<td>std</td>
+<td>0.11%</td>
+<td>0.16%</td>
+<td>0.20%</td>
+<td>1.98%</td>
+<td>0.10%</td>
+<td>0.56%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>It seems that the evaluation has low uncertainty. The difference between runs of the same model are small.</li>
+<li>The only metric that is noisier is <code>pass_64</code> and <code>pass_2</code>, as expected because there are only 100 tasks, and it aggregates all the predictions for each task.</li>
+<li><code>pass_2</code> is less noisy, probably because it is the result of voting, and pass_64 aggregates all the tasks and takes the best</li>
+<li>Thus we can trust this metrics, we could measure small differences between models if the training is reliable</li>
+</ul>
+<h3 id="variability-on-model-training">Variability on model training</h3>
+<h4 id="using-new-partition-700-train-100-val">Using new partition (700 train, 100 val)</h4>
+<table>
+<thead>
+<tr>
+<th>experiment</th>
+<th>accuracy</th>
+<th>correct_pixels</th>
+<th>correct_size</th>
+<th>pass_64</th>
+<th>unanswered</th>
+<th>vote_2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2.69%</td>
+<td>69.17%</td>
+<td>87.58%</td>
+<td>19.00%</td>
+<td>2.23%</td>
+<td>6.63%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2.77%</td>
+<td>68.72%</td>
+<td>86.72%</td>
+<td>20.50%</td>
+<td>2.21%</td>
+<td>8.16%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3.55%</td>
+<td>69.82%</td>
+<td>89.27%</td>
+<td>17.50%</td>
+<td>2.27%</td>
+<td>12.76%</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>3.00%</td>
+<td>69.24%</td>
+<td>87.85%</td>
+<td>19.00%</td>
+<td>2.24%</td>
+<td>9.18%</td>
+</tr>
+<tr>
+<td>std</td>
+<td>0.48%</td>
+<td>0.55%</td>
+<td>1.30%</td>
+<td>1.50%</td>
+<td>0.03%</td>
+<td>3.19%</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>experiment</th>
+<th>accuracy</th>
+<th>correct_pixels</th>
+<th>correct_size</th>
+<th>pass_64</th>
+<th>unanswered</th>
+<th>vote_2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2.98%</td>
+<td>67.67%</td>
+<td>85.41%</td>
+<td>16.50%</td>
+<td>3.05%</td>
+<td>1.02%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2.50%</td>
+<td>68.42%</td>
+<td>86.36%</td>
+<td>15.50%</td>
+<td>2.36%</td>
+<td>7.65%</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>2.74%</td>
+<td>68.05%</td>
+<td>85.88%</td>
+<td>16.00%</td>
+<td>2.70%</td>
+<td>4.34%</td>
+</tr>
+<tr>
+<td>std</td>
+<td>0.34%</td>
+<td>0.52%</td>
+<td>0.67%</td>
+<td>0.71%</td>
+<td>0.49%</td>
+<td>4.69%</td>
+</tr>
+</tbody>
+</table>
+<p>The variability due to model training is much bigger. In fact this variability will likely make the results very difficult to compare unless there is a big difference between them</p>
+<p>How could I reduce the variability to be able to measure small differences between experiments? I have
+to take in mind that train loss does not show significative differences between the runs. Thus it does
+not seem to be a problem with training convergence. I believe the problem is related to the differences
+between training and validation, it is a generalization issue.</p>
+<ul>
+<li>Increasing the validation set will reduce the variability, I could go back to the original train and validation sets.
+  I have already created an iteration to train models for submission, so in this iteration I could focus
+  on improving the original validation set. If it works I will use that training configuration and train
+  on all the data for submission.</li>
+<li>Training for longer might result in more stable predictions</li>
+<li>Cyclic learning rates might also improve convergence, but it doesn't seem to be the problem here.</li>
+<li>If variability is inevitable, the only solution will be to run multiple trainings and average the results.</li>
+</ul>
+<h4 id="using-original-partition-400-train-400-eval">Using original partition (400 train, 400 eval)</h4>
+<p>I'm going to run multiple trainings with the original partition and measure the variability of the evaluation.</p>
+<p>The following table shows the std of 3 runs for different experiments. 32 predictions were made for each task for evaluation.</p>
+<table>
+<thead>
+<tr>
+<th>experiment</th>
+<th>accuracy</th>
+<th>correct_pixels</th>
+<th>correct_size</th>
+<th>pass_n</th>
+<th>unanswered</th>
+<th>n</th>
+<th>vote_1</th>
+<th>vote_2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01_baseline_Qwen2-0.5B-Instruct_lr1e-4_r32_6e3steps_10240msl</td>
+<td>0.16%</td>
+<td>0.17%</td>
+<td>0.17%</td>
+<td>0.56%</td>
+<td>0.20%</td>
+<td>0.00%</td>
+<td>0.76%</td>
+<td>0.24%</td>
+</tr>
+<tr>
+<td>02_RE-ARC_Qwen2-0.5B-Instruct_lr1e-4_r32_6e3steps_10240msl</td>
+<td>0.06%</td>
+<td>0.10%</td>
+<td>0.07%</td>
+<td>0.45%</td>
+<td>0.09%</td>
+<td>0.00%</td>
+<td>0.57%</td>
+<td>0.44%</td>
+</tr>
+<tr>
+<td>03_MINI-ARC_Qwen2-0.5B-Instruct_lr1e-4_r32_6e3steps_10240msl</td>
+<td>0.12%</td>
+<td>0.22%</td>
+<td>0.39%</td>
+<td>1.23%</td>
+<td>0.13%</td>
+<td>0.00%</td>
+<td>0.13%</td>
+<td>0.29%</td>
+</tr>
+<tr>
+<td>04_ConceptARC_Qwen2-0.5B-Instruct_lr1e-4_r32_6e3steps_10240msl</td>
+<td>0.21%</td>
+<td>0.35%</td>
+<td>0.29%</td>
+<td>0.89%</td>
+<td>0.06%</td>
+<td>0.00%</td>
+<td>0.32%</td>
+<td>0.77%</td>
+</tr>
+<tr>
+<td>05_all_Qwen2-0.5B-Instruct_lr1e-4_r32_6e3steps_10240msl</td>
+<td>0.17%</td>
+<td>0.25%</td>
+<td>0.45%</td>
+<td>0.26%</td>
+<td>0.02%</td>
+<td>0.00%</td>
+<td>0.60%</td>
+<td>0.38%</td>
+</tr>
+</tbody>
+</table>
+<p>On average the std for accuracy is 0.14%, it was 0.41% when using the new train-val partition. Thus
+by changing the validation strategy we have reduced the variability 3 times.</p>
+<h3 id="what-is-the-best-data-for-training">What is the best data for training?</h3>
+<table>
+<thead>
+<tr>
+<th>external dataset</th>
+<th>accuracy</th>
+<th>correct_pixels</th>
+<th>correct_size</th>
+<th>pass_n</th>
+<th>vote_2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reversed-ARC</td>
+<td>2.53%</td>
+<td>65.67%</td>
+<td>84.65%</td>
+<td>12.62%</td>
+<td>7.32%</td>
+</tr>
+<tr>
+<td>ConceptARC</td>
+<td>3.36%</td>
+<td>66.01%</td>
+<td>85.01%</td>
+<td>14.29%</td>
+<td>8.33%</td>
+</tr>
+<tr>
+<td>all</td>
+<td>3.45%</td>
+<td>67.11%</td>
+<td>86.29%</td>
+<td>14.75%</td>
+<td>10.45%</td>
+</tr>
+<tr>
+<td>-</td>
+<td>3.82%</td>
+<td>66.21%</td>
+<td>84.85%</td>
+<td>15.33%</td>
+<td>9.70%</td>
+</tr>
+<tr>
+<td>MINI-ARC</td>
+<td>4.02%</td>
+<td>66.81%</td>
+<td>85.46%</td>
+<td>15.29%</td>
+<td>10.19%</td>
+</tr>
+<tr>
+<td>RE-ARC + MINI-ARC + ConceptARC</td>
+<td>4.21%</td>
+<td>68.09%</td>
+<td>87.07%</td>
+<td>16.12%</td>
+<td>10.61%</td>
+</tr>
+<tr>
+<td>RE-ARC</td>
+<td>4.89%</td>
+<td>69.07%</td>
+<td>87.99%</td>
+<td>18.25%</td>
+<td>12.62%</td>
+</tr>
+<tr>
+<td>RE-ARC + MINI-ARC</td>
+<td>5.16%</td>
+<td>69.21%</td>
+<td>87.72%</td>
+<td>18.12%</td>
+<td>11.74%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Using this datasets is beneficial: RE-ARC, MINI-ARC</li>
+<li>Using this datasets worsens the accuracy: ConceptARC, reversed-ARC</li>
+</ul>
+<p>When I was creating reversed-ARC I noticed that the difficulty was lower than the original ARC dataset.
+There were more trivial tasks and the tasks were easier.</p>
+<p>I find more intriguing that using ConceptARC is not helpful. I should investigate this in the future
+before creating my own data.</p>
+<h3 id="submission-results">Submission results</h3>
+<p>Adding RE-ARC to the training datasets improved LB score of a single model from 11 to 14. If I train
+for longer I get to a score of 16.</p>
+<p>TODO: what if I add MINI-ARC</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>To reduce validation metrics variability is better to use the whole evaluation set (instead of using the new partitions that used 700 examples for training and 100 for validation).</p>
+<p>Using RE-ARC and MINI-ARC improve validation accuracy.</p>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li>Try to understand why using ConceptARC for training is not helpful.</li>
+</ul>
+<h2 id="todo">TODO</h2>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled checked/> Create a dataset with reverse ARC tasks. All tasks that are invertible could be reversed and used for training.</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Implement a new option on training that uses a dataset without test tasks. It has a configuration with the number of train tasks and randomly makes new tasks selecting train and test samples.</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Prepare RE-ARC dataset for the new format</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Once we have the best configuration, try increasing <code>max_seq_len</code>. Some training samples do not fit in 4096</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Are VLLM results deterministic? Why?</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> What is the uncertainty in my estimation of accuracy? I need to know which differences are significative and which aren't before drawing conclusions.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Does the submission improve whe adding MINI-ARC</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Add submission results to conclusions</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    2024-09-09
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/guillermobarbadillo/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/guille_bar" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/channel/UCOHmUwHnd2hmUpiDzaQ1Isg" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305m-317.51 213.508V175.185l142.739 81.205z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.kaggle.com/ironbar" target="_blank" rel="noopener" title="www.kaggle.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+        <script src="../../javascript/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

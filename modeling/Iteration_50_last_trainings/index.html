@@ -1,0 +1,2767 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ironbar.github.io/arc24/modeling/Iteration_50_last_trainings/">
+      
+      
+        <link rel="prev" href="../Iteration_49_smolLM2/">
+      
+      
+        <link rel="next" href="../Iteration_n/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+    
+    
+      
+        <title>Iteration 50. Last trainings - arc24</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#iteration-50-last-trainings" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="arc24" class="md-header__button md-logo" aria-label="arc24" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            arc24
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Iteration 50. Last trainings
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ironbar/arc24" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../01_Business_Understanding/" class="md-tabs__link">
+        
+  
+    
+  
+  Business Understanding
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../02_Data_Understanding/" class="md-tabs__link">
+        
+  
+    
+  
+  Data Understanding
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../03_State_of_the_art/" class="md-tabs__link">
+        
+  
+    
+  
+  State of the art
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Modeling
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../05_Solution_Summary/" class="md-tabs__link">
+        
+  
+    
+  
+  Solution Summary
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../utils/00_Challenge_Workflow/" class="md-tabs__link">
+          
+  
+    
+  
+  Utils
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="arc24" class="md-nav__button md-logo" aria-label="arc24" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    arc24
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ironbar/arc24" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Business_Understanding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Business Understanding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Data_Understanding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Understanding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_State_of_the_art/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    State of the art
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Modeling
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Modeling
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_01_few_shot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 1. Few-shot prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_02_learn_to_count/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 2. Learn to count
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_03_fine-tune_on_arc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 3. Fine-tune on ARC tasks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_04_test_time_fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 4. Test time fine-tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_05_search_for_smaller_llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 5. Search for smaller LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_06_ensemble_with_2020_solutions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 6. Ensemble with 2020 solution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_07_training_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 7. Training data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_08_code_improvements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 8. Code improvements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_09_improve_inference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 9. Improve inference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_10_improve_selection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 10. Improve response selection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_11_pseudo_beam_search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 11. Pseudo beam-search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_12_grid_representation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 12. Grid representation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_13_single_task_ttft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 13. Single task test-time fine-tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_14_speedup_training/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 14. Speedup training with unsloth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_15_study_data_scaling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 15. Study how well this method scales with data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_16_next_steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 16. Plan next steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_17_external_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 17. Revisit external training data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_18_submission_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 18. Train models for submission
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_20_bigger_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 20. Bigger models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_21_more_data_augmentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 21. More data augmentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_22_learning_inputs_distribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 22. Learning the inputs distribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_23_more_external_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 23. More external data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_24_overfit_to_the_train_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 24. Overfit to the train set
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_25_decouple_ft_and_ttft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 25. Decouple fine-tuning and test-time fine-tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_26_dawn_of_omni_arc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 26. Dawn of Omni-ARC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_27_fix_data_augmentation_bug/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 27. Fix data augmentation bug
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_28_optimal_train_duration_and_capacity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 28. Optimal train duration and capacity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_29_qwen25/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 29. Qwen 2.5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_30_optimal_number_predictions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 30. Optimal number of predictions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_31_train_submission_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 31. Train new submission models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_32_llama_32/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 32. Llama 3.2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_33_back_to_smollm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 33. Back to SmolLM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_34_developing_omni_arc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 34. Developing Omni-ARC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_35_optimize_batch_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 35. Optimize batch size
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_36_solving_evaluation_tasks_with_code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 36. Solving evaluation tasks with code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_37_optimize_code_generation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 37. Optimize code generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_38_make_non_instruct_models_great_again/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 38. Make non-instruct models great again
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_39_reduce_vllm_ram_usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 39. Reduce VLLM RAM usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_40_try_coding_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 40. Try coding models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_41_next_steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 41. Next steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_42_improve_omniarc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 42. Improve Omni-ARC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_43_train_a_verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 43. Train a verifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_44_learn_to_use_strong_compute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 44. Learn to use Strong Compute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_45_improve_verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 45. Improve the verifier approach
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_46_revisit_small_llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 46. Revisit small LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_47_select_instead_of_verify/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 47. Select instead of verify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_48_more_external_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 48. More External data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_49_smolLM2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 49. SmolLM2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Iteration 50. Last trainings
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 50. Last trainings
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motivation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-train-the-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps to train the model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#syncronize-checkpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syncronize checkpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#train-bigger-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Train bigger models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fp8-training-on-h100" class="md-nav__link">
+    <span class="md-ellipsis">
+      FP8 training on H100
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plan-the-final-12-submissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plan the final 12 submissions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plan the final 12 submissions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thursday-7-november" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thursday 7 November
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#friday-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Friday 8
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saturday-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Saturday 9
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sunday-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sunday 10
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-time-fine-tuning-with-qwen25-15b" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test-time fine-tuning with Qwen2.5-1.5B
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-time-fine-tuning-with-qwen25-7b" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test-time fine-tuning with Qwen2.5-7B
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#training-speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training speed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qwen25-7b-instruct-is-not-showing-better-results-than-qwen25-15b-instruct" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qwen2.5-7B-Instruct is not showing better results than Qwen2.5-1.5B-Instruct
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effect-of-the-number-of-predictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Effect of the number of predictions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frozen-model-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frozen model results
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_n/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration n. Iteration_title
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Solution_Summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Solution Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Utils
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/00_Challenge_Workflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Challenge workflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/markdown_cheatsheet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Markdown cheatsheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/methodology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Methodology
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motivation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-train-the-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps to train the model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#syncronize-checkpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syncronize checkpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#train-bigger-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Train bigger models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fp8-training-on-h100" class="md-nav__link">
+    <span class="md-ellipsis">
+      FP8 training on H100
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plan-the-final-12-submissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plan the final 12 submissions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plan the final 12 submissions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thursday-7-november" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thursday 7 November
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#friday-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Friday 8
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saturday-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Saturday 9
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sunday-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sunday 10
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-time-fine-tuning-with-qwen25-15b" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test-time fine-tuning with Qwen2.5-1.5B
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-time-fine-tuning-with-qwen25-7b" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test-time fine-tuning with Qwen2.5-7B
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#training-speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training speed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qwen25-7b-instruct-is-not-showing-better-results-than-qwen25-15b-instruct" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qwen2.5-7B-Instruct is not showing better results than Qwen2.5-1.5B-Instruct
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effect-of-the-number-of-predictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Effect of the number of predictions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frozen-model-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frozen model results
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="iteration-50-last-trainings">Iteration 50. Last trainings</h1>
+<p><em>06-11-2024</em></p>
+<h2 id="goal">Goal</h2>
+<p>Can we improve the LB score by training the last models on a powerful server?</p>
+<h2 id="motivation">Motivation</h2>
+<p>There is not enough time to train models on Veridas cluster, I need to use a 8xA100 server to train
+the models fast enough for the end of the challenge.</p>
+<h2 id="development">Development</h2>
+<h3 id="steps-to-train-the-model">Steps to train the model</h3>
+<ol>
+<li>Add the public SSH key of the machine to <a href="https://github.com/settings/keys">Github</a>. <code>cat ~/.ssh/id_rsa.pub</code></li>
+<li>Clone the arc 24 repo to the machine: <code>cd ~/code; git clone git@github.com:ironbar/arc24.git</code></li>
+<li>Create a python environment for training</li>
+</ol>
+<pre><code class="language-bash">cd ~/code/arc24
+python3 -m virtualenv ~/envs/arc24
+source ~/envs/arc24/bin/activate
+pip install -r requirements.txt
+pip install flash-attn --no-build-isolation
+</code></pre>
+<ol>
+<li>Do some first trainings to see if the training speed is enough</li>
+</ol>
+<pre><code class="language-bash">source ~/envs/arc24/bin/activate
+export gpus=8
+export batch_size=16
+export steps=200
+export per_device_train_batch_size=1
+export model_path=Qwen/Qwen2.5-0.5B-Instruct
+export WANDB_API_KEY=
+
+accelerate launch --num_processes ${gpus} --num_machines 1 --mixed_precision bf16 --multi_gpu \
+/root/code/arc24/scripts/fine-tuning.py \
+--n_gpus ${gpus} \
+--batch_size ${batch_size} \
+--per_device_train_batch_size ${per_device_train_batch_size} \
+--output_dir /root/models/20241106_debug_training_speed/${gpus}XA100_bs${batch_size}_pdtbs${per_device_train_batch_size}_${steps}steps_$(basename $model_path) \
+--max_steps ${steps} \
+--model_path ${model_path} \
+--lora_r 128 \
+--device_map None \
+--no-verbose \
+--max_seq_len 8192 \
+--learning_rate 5e-5 \
+--train_datasets /root/code/arc24/data/original_data/arc-agi_training_challenges.json output-from-examples-v1 \
+--val_dataset /root/code/arc24/data/original_data/arc-agi_evaluation_challenges.json output-from-examples-v1 \
+--remove_train_samples_to_fit_max_seq_len \
+--save_steps 500 \
+--eval_steps 5000000 \
+--warmup_ratio 1e-1
+</code></pre>
+<ol>
+<li>Copy extra data</li>
+</ol>
+<pre><code class="language-bash">export machine_ip=94.156.8.181
+export machine_ip=94.156.8.119
+export machine_ip=94.156.8.239
+scp -P 50022 /mnt/hdd0/Kaggle/arc24/data/verifier/evaluation_v0.json root@${machine_ip}:~/code/arc24/data/verifier
+scp -P 50022 /mnt/hdd0/Kaggle/arc24/data/verifier/training_v1.json  root@${machine_ip}:~/code/arc24/data/verifier
+scp -P 50022 /mnt/hdd0/Kaggle/arc24/data/rearc/v2/re-arc.json root@${machine_ip}:~/code/arc24/data/external_data
+</code></pre>
+<ol>
+<li>Download barc datasets</li>
+</ol>
+<pre><code class="language-bash">mkdir /root/code/arc24/data/barc
+cd /root/code/arc24/data/barc
+wget https://huggingface.co/datasets/barc0/100k-gpt4-description-gpt4omini-code_generated_problems/resolve/main/100k-gpt4-description-gpt4omini-code_generated_problems.jsonl?download=true -O 100k-gpt4-description-gpt4omini-code_generated_problems.jsonl
+wget https://huggingface.co/datasets/barc0/100k-gpt4omini-description-gpt4omini-code_generated_problems/resolve/main/100k_gpt4o-mini_generated_problems.jsonl?download=true -O 100k_gpt4o-mini_generated_problems.jsonl
+wget https://huggingface.co/datasets/barc0/200k_HEAVY_gpt4o-description-gpt4omini-code_generated_problems/resolve/main/data_100k.jsonl?download=true -O data_100k.jsonl
+wget https://huggingface.co/datasets/barc0/200k_HEAVY_gpt4o-description-gpt4omini-code_generated_problems/resolve/main/data_suggestfunction_100k.jsonl?download=true -O data_suggestfunction_100k.jsonl
+</code></pre>
+<ol>
+<li>Install packages: <code>apt install screen nvtop htop rsync</code></li>
+<li>Run the final training:</li>
+</ol>
+<pre><code class="language-bash">export model_path=Qwen/Qwen2.5-1.5B-Instruct
+export learning_rate=5e-5
+export lora_r=128
+export gpus=8
+export batch_size=16
+export steps=200000
+export per_device_train_batch_size=1
+export max_seq_len=8192
+export WANDB_API_KEY=
+
+accelerate launch --num_processes ${gpus} --num_machines 1 --mixed_precision bf16 --multi_gpu \
+/root/code/arc24/scripts/fine-tuning.py \
+--n_gpus ${gpus} \
+--batch_size ${batch_size} \
+--per_device_train_batch_size ${per_device_train_batch_size} \
+--output_dir /root/models/20241106_final_training/$(basename $model_path)_lora${lora_r}_lr${learning_rate}_${steps}steps_${gpus}XA100_bs${batch_size}_pdtbs${per_device_train_batch_size}_msql${max_seq_len} \
+--max_steps ${steps} \
+--model_path ${model_path} \
+--lora_r ${lora_r} \
+--device_map None \
+--no-verbose \
+--max_seq_len ${max_seq_len} \
+--learning_rate ${learning_rate} \
+--train_datasets barc-200-20-/root/code/arc24/data/barc/100k-gpt4-description-gpt4omini-code_generated_problems.jsonl output-from-examples-v1 \
+--train_datasets barc-200-20-/root/code/arc24/data/barc/100k_gpt4o-mini_generated_problems.jsonl output-from-examples-v1 \
+--train_datasets barc-200-20-/root/code/arc24/data/barc/data_100k.jsonl output-from-examples-v1 \
+--train_datasets barc-200-20-/root/code/arc24/data/barc/data_suggestfunction_100k.jsonl output-from-examples-v1 \
+--train_datasets /root/code/arc24/data/verifier/training_v1.json select-output-from-examples-v0 \
+--train_datasets /root/code/arc24/data/verifier/training_v1.json verify-output-from-examples-v0 \
+--train_datasets /root/code/arc24/data/verifier/evaluation_v0.json select-output-from-examples-v0 \
+--train_datasets /root/code/arc24/data/verifier/evaluation_v0.json verify-output-from-examples-v0 \
+--train_datasets /root/code/arc24/data/original_data/arc-agi_training_challenges.json output-from-examples-v1 \
+--train_datasets /root/code/arc24/data/original_data/arc-agi_evaluation_challenges.json output-from-examples-v1 \
+--train_datasets /root/code/arc24/data/external_data/re-arc.json output-from-examples-v1 \
+--train_datasets /root/code/arc24/data/external_data/kaggle.json output-from-examples-v1  \
+--train_datasets /root/code/arc24/data/external_data/pqa-dataset-1k.json output-from-examples-v1  \
+--train_datasets /root/code/arc24/data/external_data/neoeye_tama.json output-from-examples-v1  \
+--train_datasets /root/code/arc24/data/external_data/MINI-ARC.json output-from-examples-v1  \
+--train_datasets /root/code/arc24/data/original_data/arc-agi_training_challenges.json input-from-inputs-v0 \
+--train_datasets /root/code/arc24/data/original_data/arc-agi_evaluation_challenges.json input-from-inputs-v0 \
+--train_datasets /root/code/arc24/data/external_data/re-arc.json input-from-inputs-v0 \
+--train_datasets /root/code/arc24/data/external_data/kaggle.json input-from-inputs-v0  \
+--train_datasets /root/code/arc24/data/external_data/pqa-dataset-1k.json input-from-inputs-v0  \
+--train_datasets /root/code/arc24/data/external_data/neoeye_tama.json input-from-inputs-v0  \
+--train_datasets /root/code/arc24/data/external_data/MINI-ARC.json input-from-inputs-v0  \
+--val_dataset /root/code/arc24/data/original_data/arc-agi_evaluation_challenges.json output-from-examples-v1 \
+--remove_train_samples_to_fit_max_seq_len \
+--optim adamw_torch \
+--save_steps 500 \
+--eval_steps 5000000 \
+--warmup_ratio 2e-2
+</code></pre>
+<h3 id="syncronize-checkpoints">Syncronize checkpoints</h3>
+<pre><code class="language-bash">while true; do
+    for machine_ip in 94.156.8.181 94.156.8.119; do
+        rsync -r -avP -e &quot;ssh -i ~/.ssh/id_rsa.pub -p 50022&quot; root@${machine_ip}:~/models/20241106_final_training/ /mnt/hdd0/Kaggle/arc24/models/20241106_final_training/
+    done
+    for machine_ip in 192.222.52.72; do
+        rsync -r -avP -e &quot;ssh -i ~/.ssh/id_rsa.pub&quot; ubuntu@${machine_ip}:~/models/20241106_final_training/ /mnt/hdd0/Kaggle/arc24/models/20241106_final_training/
+    done
+    sleep 1h
+done
+
+
+
+while true; do
+    for machine_ip in 94.156.8.181 94.156.8.119 94.156.8.239; do
+        rsync -r -avP -e &quot;ssh -i ~/.ssh/id_rsa.pub -p 50022&quot; root@${machine_ip}:~/models/20241106_final_training/ /mnt/hdd0/Kaggle/arc24/models/20241106_final_training/
+    done
+    sleep 1h
+done
+</code></pre>
+<h3 id="train-bigger-models">Train bigger models</h3>
+<p>It might be worth to train bigger models. I already studied the improvements of using bigger models on <a href="../Iteration_20_bigger_models/">iteration 20</a>.
+Also on <a href="../Iteration_46_revisit_small_llms/">iteration 46</a> I have seen that using smaller models produced
+worse results even when training the models for longer.</p>
+<p>Now that I have a model that can select predictions, it might be worth to use bigger models even when I
+cannot do test-time fine-tuning on them.</p>
+<h3 id="fp8-training-on-h100">FP8 training on H100</h3>
+<ul>
+<li>https://huggingface.co/docs/accelerate/en/usage_guides/low_precision_training</li>
+<li>https://github.com/NVIDIA/TransformerEngine</li>
+</ul>
+<pre><code class="language-bash">pip install git+https://github.com/NVIDIA/TransformerEngine.git@stable
+</code></pre>
+<p>I have not been able to install the backends required for fp8 training.</p>
+<h3 id="plan-the-final-12-submissions">Plan the final 12 submissions</h3>
+<p>I'm not sure if I will have a Qwen2.5-7B model, it depends on the availability of a 3rd training machine
+by compute strong and being able to train the model successfully.</p>
+<p>I have to answer the following questions:</p>
+<ul>
+<li>How good are the new models at selecting predictions? (and how fast also) Answering this question
+  will allow to better choose the combination methods for the predictions.</li>
+<li>Do the new models improve the LB score when using the classic test-time fine-tuning submission?</li>
+<li>Is it worth to make predictions with the model without test-time fine-tuning? That would be fast and
+  might solve some additional tasks (8 minutes to do 16 predictions per task using Qwen2.5-0.5B).</li>
+<li>Could I do test-time fine-tuning with the 1.5B model? I could test this in the Kaggle notebook without submission.</li>
+</ul>
+<p>There are 3 sources of predictions:</p>
+<ol>
+<li>Test-time fine-tuned model</li>
+<li>Frozen model</li>
+<li>2020 solution</li>
+</ol>
+<p>And there are 4 ways of combining the predictions:</p>
+<ol>
+<li>Selection using a model</li>
+<li>Voting</li>
+<li>Combination of predictions (first attempt from one submission and the second from other submission)</li>
+<li>Concatenation</li>
+</ol>
+<p>The submissions that I can create are the combination of this two variables.</p>
+<h4 id="thursday-7-november">Thursday 7 November</h4>
+<p>I'm going to have available Qwen2.5-0.5B trained for 200k steps. I have made a classic submission
+that scored 35 and two triple ensemble submission that scored 35 and 33.</p>
+<h4 id="friday-8">Friday 8</h4>
+<p>I'm going to have available Qwen2.5-0.5B trained for 400k steps and Qwen2.5-1.5B trained for 200k steps.</p>
+<ul>
+<li>Submission with Qwen2.5-0.5B and learning rate 4e-5: 38</li>
+<li>Submission with Qwen2.5-1.5B and learning rate 1e-5: 35 (but I had an error on <code>max_seq_len</code>, so score might be higher. Also I had a timeout on another submission with Qwen2.5-1.5B)</li>
+</ul>
+<h4 id="saturday-9">Saturday 9</h4>
+<p>I have available a Qwen2.5-0.5B trained for 400k steps, Qwen2.5-1.5B trained for 300k steps and Qwen2.5-7B trained for 100k steps.</p>
+<ul>
+<li>Submission with Qwen2.5-1.5B and learning rate 1e-5: 34</li>
+<li>Submission with Qwen2.5-1.5B and learning rate 2e-5: 38</li>
+<li>Submission with Qwen2.5-1.5B and learning rate 4e-5: 38</li>
+</ul>
+<h4 id="sunday-10">Sunday 10</h4>
+<p>13:00 is the last time to submit a system that takes 12 hours to create the submission</p>
+<ul>
+<li>Submission with Qwen2.5-0.5B and learning rate 8e-5: 35</li>
+<li>Triple ensemble with Qwen2.5-7B: 37 and 33</li>
+</ul>
+<h3 id="test-time-fine-tuning-with-qwen25-15b">Test-time fine-tuning with Qwen2.5-1.5B</h3>
+<p>On this <a href="https://www.kaggle.com/code/ironbar/single-task-test-time-fine-tuning-for-arc24?scriptVersionId=205771369">notebook</a> I have verified that I can do test-time fine-tuning with Qwen2.5-1.5B.</p>
+<p>I had to decrease the <code>max_seq_len</code> from 5120 to 3584 to avoid OOM errors.</p>
+<ul>
+<li>Fine-tuning took 2.6 minutes per task for 100 steps</li>
+<li>Inference took 1.2 minutes per task to do 32 predictions</li>
+</ul>
+<p>Under that conditions a submission would take around 6 hours. It seems we have margin to increase either
+the training steps or the number of predictions.</p>
+<p>Experiment with bigger steps and predictions:</p>
+<ul>
+<li>64 predictions -&gt; 1.5 minutes per tasks</li>
+<li>200 steps -&gt; 4.3 minutes per task</li>
+</ul>
+<p>Which learning rate to use? I can't use the evaluation set to tune the learning rate. However I can
+have a look at the Qwen2.5-0.5B models. We trained the models with learning rate between 5e-5 and 1e-4.
+And the test-time fine-tuning learning rates were 4e-5 and 8e-5 most frequently. Thus we can see that
+we used almost the exact same learning rate despite using a batch size of 1 for test-time fine-tuning.</p>
+<p>The Qwen2.5-1.5B was trained with a learning rate of 5e-5. A conservative learning rate for test-time
+fine-tuning would be 1e-5. If it works we could try increasing it to 2e-5.</p>
+<h3 id="test-time-fine-tuning-with-qwen25-7b">Test-time fine-tuning with Qwen2.5-7B</h3>
+<p>Let's see if we can use test-time fine-tuning with Qwen2.5-7B.</p>
+<p>If I decrease the <code>max_seq_len</code> to 896 I can fine-tune on Kaggle machines, at a speed of around 2.45 seconds per sample.
+In those conditions I could only use around 50% of the tasks for training.</p>
+<p>If I use 4 bit quantization the speed slows down to around 11.5 seconds per sample. Then I have tried
+disabling gradient checkpointing and the speed increases to 7 seconds per sample. Is better but still
+very slow.</p>
+<p>My idea is to create a notebook for the 7B model, that only does test-time fine-tuning on the 50% smallest tasks
+and does inference with the frozen model for the grouped other 50% tasks. I'm not sure if this might
+work better than the smaller models but it is worth to try it.</p>
+<p>I have found that inference is extremely slow because I have to merge the heavy model with the lora
+adapter before using VLLM. I have tried modifying the inference script to support using LoRAs directly
+but VLLM does not support dora, and I have used it for training. This would imply that half of the
+submission time would go to inference (because it's taking 4 minutes to make 8 predictions per task)</p>
+<p>Thus I don't believe it is worth to use Qwen2.5-7B for test-time fine-tuning. I could use it in an ensemble
+without fine-tuning.</p>
+<h2 id="results">Results</h2>
+<h3 id="training-speed">Training speed</h3>
+<p>I have done some initial training speed experiments to verify that the machines work well. I haven't seen
+any speed improvement by increasing the batch size or increasing the per device train batch size.</p>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>hardware</th>
+<th>it/s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen2.5-0.5B-Instruct</td>
+<td>8xA100</td>
+<td>2.38</td>
+</tr>
+<tr>
+<td>Qwen2.5-1.5B-Instruct</td>
+<td>8xA100</td>
+<td>1.44</td>
+</tr>
+<tr>
+<td>Qwen2.5-7B-Instruct</td>
+<td>8xA100</td>
+<td>0.68</td>
+</tr>
+<tr>
+<td>Qwen2.5-7B-Instruct</td>
+<td>8xH100</td>
+<td>1.09</td>
+</tr>
+</tbody>
+</table>
+<p>The H100 might be a good idea for <code>Qwen2.5-7B-Instruct</code>.</p>
+<h3 id="qwen25-7b-instruct-is-not-showing-better-results-than-qwen25-15b-instruct">Qwen2.5-7B-Instruct is not showing better results than Qwen2.5-1.5B-Instruct</h3>
+<p><img alt="training metrics" src="../res/2024-11-07-06-44-53.png" /></p>
+<p>We show a great improvement of <code>Qwen2.5-1.5B-Instruct</code> over <code>Qwen2.5-0.5B-Instruct</code> on training loss.
+However we don't observe the same improvement with <code>Qwen2.5-7B-Instruct</code>. I have tried with 3 different
+learning rates: 1e-5, 2e-5, 5e-5 (diverged)</p>
+<table>
+<thead>
+<tr>
+<th>model parameters</th>
+<th>LoRA parameters for rank 128</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.5B</td>
+<td>17M</td>
+</tr>
+<tr>
+<td>1.5B</td>
+<td>35M</td>
+</tr>
+<tr>
+<td>7B</td>
+<td>80M</td>
+</tr>
+</tbody>
+</table>
+<p>We can see that the trainable number of parameters is different, but can it explain the different training dynamics?</p>
+<h3 id="effect-of-the-number-of-predictions">Effect of the number of predictions</h3>
+<p>I'm reusing data from <a href="../Iteration_30_optimal_number_predictions/">iteration 30</a> to create the plot below.</p>
+<p><img alt="number of predictions" src="../res/2024-11-07-07-57-38.png" /></p>
+<p>The plot shows that the <code>pass_n</code> metric increases linearly with the logarithmic of the number of predictions.
+However voting improves with a much lower slope. This is likely due to the fact that the solutions that are
+found when using a higher number of predictions do not reach the needed majority of the votes.</p>
+<p>¿Maybe a selection model could scale better? So far I have only used the selection model for 32 predictions.</p>
+<h3 id="frozen-model-results">Frozen model results</h3>
+<table>
+<thead>
+<tr>
+<th>models</th>
+<th>LB score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen2.5-0.5B-Instruct</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Qwen2.5-1.5B-Instruct</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Qwen2.5-7B-Instruct</td>
+<td>13</td>
+</tr>
+</tbody>
+</table>
+<p>The bigger models do not show better results on LB when making a submission with the frozen model.
+This submissions were done after the competition end.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>We have not been able to improve the LB score by training new models. Maybe we should have trained
+them for longer since we were training for more tasks.</p>
+<h2 id="next-steps">Next steps</h2>
+<h2 id="todo">TODO</h2>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled checked/> How to sync checkpoints between the servers and my machine?</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Verify that I can use the bigger models in Kaggle<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled checked/> Upload base models</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Upload loras from early checkpoints</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Notebook to do inference without test-time fine-tuning (I believe it already exists)</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> train Qwen2.5-7B-Instruct with lora_r=64</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Plan the last 12 submissions</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Voting and selection dynamics could be different after test-time fine-tuning</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Could I do test-time fine-tuning with the 1.5B model?</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Create a notebook for triple ensemble</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Add submission results from the models without ttft</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Conclusion</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    2024-11-11
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/guillermobarbadillo/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/guille_bar" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/channel/UCOHmUwHnd2hmUpiDzaQ1Isg" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305m-317.51 213.508V175.185l142.739 81.205z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.kaggle.com/ironbar" target="_blank" rel="noopener" title="www.kaggle.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+        <script src="../../javascript/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

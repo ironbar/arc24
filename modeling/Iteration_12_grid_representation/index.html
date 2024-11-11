@@ -1,0 +1,2980 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ironbar.github.io/arc24/modeling/Iteration_12_grid_representation/">
+      
+      
+        <link rel="prev" href="../Iteration_11_pseudo_beam_search/">
+      
+      
+        <link rel="next" href="../Iteration_13_single_task_ttft/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+    
+    
+      
+        <title>Iteration 12. Grid representation - arc24</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#iteration-12-grid-representation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="arc24" class="md-header__button md-logo" aria-label="arc24" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            arc24
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Iteration 12. Grid representation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ironbar/arc24" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../01_Business_Understanding/" class="md-tabs__link">
+        
+  
+    
+  
+  Business Understanding
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../02_Data_Understanding/" class="md-tabs__link">
+        
+  
+    
+  
+  Data Understanding
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../03_State_of_the_art/" class="md-tabs__link">
+        
+  
+    
+  
+  State of the art
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Modeling
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../05_Solution_Summary/" class="md-tabs__link">
+        
+  
+    
+  
+  Solution Summary
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../utils/00_Challenge_Workflow/" class="md-tabs__link">
+          
+  
+    
+  
+  Utils
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="arc24" class="md-nav__button md-logo" aria-label="arc24" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    arc24
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ironbar/arc24" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_Business_Understanding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Business Understanding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Data_Understanding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Understanding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_State_of_the_art/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    State of the art
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Modeling
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Modeling
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_01_few_shot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 1. Few-shot prompting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_02_learn_to_count/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 2. Learn to count
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_03_fine-tune_on_arc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 3. Fine-tune on ARC tasks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_04_test_time_fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 4. Test time fine-tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_05_search_for_smaller_llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 5. Search for smaller LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_06_ensemble_with_2020_solutions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 6. Ensemble with 2020 solution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_07_training_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 7. Training data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_08_code_improvements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 8. Code improvements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_09_improve_inference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 9. Improve inference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_10_improve_selection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 10. Improve response selection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_11_pseudo_beam_search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 11. Pseudo beam-search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Iteration 12. Grid representation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 12. Grid representation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motivation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fine-tuning-script-refactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fine-tuning script refactor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-a-set-of-symbols-to-replace-the-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding a set of symbols to replace the numbers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-simple-evaluation-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a simple evaluation script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosine-with-restarts-learning-rate-schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cosine with restarts learning rate schedule
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-with-different-grid-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment with different grid encoders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-loss-is-not-a-perfect-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation loss is not a perfect proxy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiments-training-on-arc-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiments training on ARC tasks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Experiments training on ARC tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#longer-trainings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Longer trainings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimal-learning-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimal learning rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effect-of-lora-rank" class="md-nav__link">
+    <span class="md-ellipsis">
+      Effect of lora rank
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-time-fine-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test time fine-tuning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test time fine-tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optimal-training-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimal training steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removing-train-samples-to-fit-on-max-sequence-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removing train samples to fit on max sequence length
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qwen2-05b-vs-qwen2-15b" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qwen2-0.5B vs Qwen2-1.5B
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Qwen2-0.5B vs Qwen2-1.5B">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#train-on-arc-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Train on ARC tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-time-fine-tuning_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test-time fine-tuning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submission-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Submission results
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_13_single_task_ttft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 13. Single task test-time fine-tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_14_speedup_training/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 14. Speedup training with unsloth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_15_study_data_scaling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 15. Study how well this method scales with data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_16_next_steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 16. Plan next steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_17_external_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 17. Revisit external training data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_18_submission_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 18. Train models for submission
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_20_bigger_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 20. Bigger models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_21_more_data_augmentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 21. More data augmentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_22_learning_inputs_distribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 22. Learning the inputs distribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_23_more_external_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 23. More external data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_24_overfit_to_the_train_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 24. Overfit to the train set
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_25_decouple_ft_and_ttft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 25. Decouple fine-tuning and test-time fine-tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_26_dawn_of_omni_arc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 26. Dawn of Omni-ARC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_27_fix_data_augmentation_bug/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 27. Fix data augmentation bug
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_28_optimal_train_duration_and_capacity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 28. Optimal train duration and capacity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_29_qwen25/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 29. Qwen 2.5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_30_optimal_number_predictions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 30. Optimal number of predictions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_31_train_submission_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 31. Train new submission models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_32_llama_32/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 32. Llama 3.2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_33_back_to_smollm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 33. Back to SmolLM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_34_developing_omni_arc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 34. Developing Omni-ARC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_35_optimize_batch_size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 35. Optimize batch size
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_36_solving_evaluation_tasks_with_code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 36. Solving evaluation tasks with code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_37_optimize_code_generation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 37. Optimize code generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_38_make_non_instruct_models_great_again/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 38. Make non-instruct models great again
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_39_reduce_vllm_ram_usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 39. Reduce VLLM RAM usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_40_try_coding_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 40. Try coding models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_41_next_steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 41. Next steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_42_improve_omniarc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 42. Improve Omni-ARC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_43_train_a_verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 43. Train a verifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_44_learn_to_use_strong_compute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 44. Learn to use Strong Compute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_45_improve_verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 45. Improve the verifier approach
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_46_revisit_small_llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 46. Revisit small LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_47_select_instead_of_verify/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 47. Select instead of verify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_48_more_external_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 48. More External data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_49_smolLM2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 49. SmolLM2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_50_last_trainings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration 50. Last trainings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Iteration_n/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Iteration n. Iteration_title
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_Solution_Summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Solution Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Utils
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/00_Challenge_Workflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Challenge workflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/markdown_cheatsheet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Markdown cheatsheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/methodology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Methodology
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motivation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fine-tuning-script-refactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fine-tuning script refactor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-a-set-of-symbols-to-replace-the-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding a set of symbols to replace the numbers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-simple-evaluation-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a simple evaluation script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosine-with-restarts-learning-rate-schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cosine with restarts learning rate schedule
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-with-different-grid-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment with different grid encoders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-loss-is-not-a-perfect-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation loss is not a perfect proxy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiments-training-on-arc-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiments training on ARC tasks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Experiments training on ARC tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#longer-trainings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Longer trainings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimal-learning-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimal learning rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effect-of-lora-rank" class="md-nav__link">
+    <span class="md-ellipsis">
+      Effect of lora rank
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-time-fine-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test time fine-tuning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test time fine-tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optimal-training-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimal training steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removing-train-samples-to-fit-on-max-sequence-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removing train samples to fit on max sequence length
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qwen2-05b-vs-qwen2-15b" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qwen2-0.5B vs Qwen2-1.5B
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Qwen2-0.5B vs Qwen2-1.5B">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#train-on-arc-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Train on ARC tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-time-fine-tuning_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test-time fine-tuning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submission-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Submission results
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TODO
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="iteration-12-grid-representation">Iteration 12. Grid representation</h1>
+<p><em>26-08-2024</em></p>
+<h2 id="goal">Goal</h2>
+<p>Can I improve the accuracy of the models by using a better grid representation?</p>
+<h2 id="motivation">Motivation</h2>
+<p>Before going to generate synthetic data to learn the priors I want to know what is the best representation
+of the problem for an LLM. LLMs typically deal with 1d data, not 2d data. Thus trying different representations
+makes a lot of sense. This can have a big impact on the accuracy of the model.</p>
+<p>The grid representation should not use too many tokens, otherwise hardware requirements grow.</p>
+<h2 id="development">Development</h2>
+<h3 id="fine-tuning-script-refactor">Fine-tuning script refactor</h3>
+<p>I need to refactor the fine-tuning script to make it very easy to try new representations and prompts.
+Code should be shared between train and evaluation.</p>
+<p>My idea will be to run a very short train with a fixed seed, refactor the code and verify that it still works the same way.</p>
+<h3 id="finding-a-set-of-symbols-to-replace-the-numbers">Finding a set of symbols to replace the numbers</h3>
+<p>Using the Llama and Qwen tokenizers I have been able to find a set of symbols that are unique (do not form part of other words in the vocabulary)
+Using this symbols the model should receive a representation that is equivalent to the current numbers one.
+But maybe the model can work better with that set of symbols.</p>
+<pre><code>selection = ['ñ', 'ò', '÷', 'û', 'ą', 'ć', 'ď', 'ę', 'Ě', 'Ğ']
+</code></pre>
+<h3 id="create-a-simple-evaluation-script">Create a simple evaluation script</h3>
+<p>Currently I have a notebook to merge weights of the model and lora, a script to do inference and a notebook
+to evaluate. That works if I only have to evaluate a single model, but does not scale to evaluating many models.</p>
+<p>Thus I have to create either a script or a notebook that simply takes the path of the checkpoint
+that I want to evaluate, and does all the job.</p>
+<h3 id="cosine-with-restarts-learning-rate-schedule">Cosine with restarts learning rate schedule</h3>
+<p>I have updated the fine-tuning to support cosine with restarts learning rate scheduler.</p>
+<ul>
+<li>https://huggingface.co/docs/transformers/en/main_classes/trainer</li>
+<li>https://github.com/huggingface/transformers/blob/v4.44.2/src/transformers/trainer_utils.py#L410</li>
+<li>https://huggingface.co/transformers/v4.2.2/_modules/transformers/optimization.html</li>
+</ul>
+<p>Maybe I could use another scheduler directly, that decreases the amplitude of the cosine restart
+over the train duration. The experiment with cosine learning rate seems to be increasing the learning rate to a too high value.</p>
+<ul>
+<li>https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CyclicLR.html#torch.optim.lr_scheduler.CyclicLR</li>
+<li>https://github.com/huggingface/transformers/blob/746104ba6f0514159d58dc2fb09c887d0e9d4863/src/transformers/trainer.py#L1249C22-L1249C34</li>
+<li>https://github.com/bitsandbytes-foundation/bitsandbytes/blob/main/bitsandbytes/optim/adamw.py</li>
+</ul>
+<p>4 cycles, 0.707, warmup ratio in the cycle.
+It seems I would need to give both the optimizer and scheduler as input to the train function.</p>
+<p>Study of how the <a href="https://huggingface.co/docs/transformers/en/main_classes/trainer#trainer">Trainer</a> works (<a href="https://github.com/huggingface/transformers/blob/746104ba6f0514159d58dc2fb09c887d0e9d4863/src/transformers/trainer.py#L289">source code</a>). It has a method <code>self.create_optimizer_and_scheduler</code> that calls to <code>self.create_optimizer</code> and <code>self.create_scheduler</code>. This method is called from <code>self._inner_training_loop</code> that is itself called from the <code>self.train</code> method.</p>
+<ul>
+<li><code>self.train</code><ul>
+<li><code>self._inner_training_loop</code><ul>
+<li><code>self.create_optimizer_and_scheduler</code><ul>
+<li><code>self.create_optimizer</code></li>
+<li><code>self.create_scheduler</code><ul>
+<li><code>optimization.get_scheduler</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>I believe the simplest hack is to modify the <code>self.create_scheduler</code> function to return the scheduler I want.</p>
+<h2 id="results">Results</h2>
+<p>All the presented results are the mean metrics of doing 64 predictions per task.</p>
+<h3 id="experiment-with-different-grid-encoders">Experiment with different grid encoders</h3>
+<p><a href="https://wandb.ai/guillermobarbadillo/20240826_grid_encoders?nw=nwuserguillermobarbadillo">Wandb</a></p>
+<table>
+<thead>
+<tr>
+<th>row numbers</th>
+<th>grid shape</th>
+<th>other symbols</th>
+<th>accuracy</th>
+<th>correct_pixels</th>
+<th>correct_size</th>
+<th>unanswered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>2.0%</td>
+<td>58.0%</td>
+<td>74.0%</td>
+<td><strong>2.2%</strong></td>
+</tr>
+<tr>
+<td>x</td>
+<td></td>
+<td></td>
+<td>2.3%</td>
+<td>63.9%</td>
+<td>81.5%</td>
+<td>3.4%</td>
+</tr>
+<tr>
+<td></td>
+<td>x</td>
+<td></td>
+<td><strong>2.8%</strong></td>
+<td>62.3%</td>
+<td>79.8%</td>
+<td><strong>2.8%</strong></td>
+</tr>
+<tr>
+<td>x</td>
+<td>x</td>
+<td></td>
+<td><strong>2.8%</strong></td>
+<td><strong>66.3%</strong></td>
+<td><strong>84.2%</strong></td>
+<td><strong>2.8%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>x</td>
+<td>1.9%</td>
+<td>59.1%</td>
+<td>75.5%</td>
+<td><strong>2.4%</strong></td>
+</tr>
+<tr>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>2.3%</td>
+<td><strong>66.7%</strong></td>
+<td><strong>84.9%</strong></td>
+<td>4.1%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Using row numbers and grid shape increase accuracy, correct pixels and correct size</li>
+<li>There is no evidence that using alternative symbols instead of numbers gives better results.</li>
+</ul>
+<p>Thus the best encoder configuration for Qwen would be <code>GridShapeEncoder(RowNumberEncoder(MinimalGridEncoder()))</code>.</p>
+<pre><code>GridCodeBlockEncoder(MinimalGridEncoder())
+GridCodeBlockEncoder(RowNumberEncoder(MinimalGridEncoder()))
+GridShapeEncoder(MinimalGridEncoder())
+GridShapeEncoder(RowNumberEncoder(MinimalGridEncoder()))
+
+GridCodeBlockEncoder(ReplaceNumberEncoder(MinimalGridEncoder()))
+GridShapeEncoder(RowNumberEncoder(ReplaceNumberEncoder(MinimalGridEncoder())))
+</code></pre>
+<h3 id="validation-loss-is-not-a-perfect-proxy">Validation loss is not a perfect proxy</h3>
+<p>I have evaluated multiple checkpoints of a training, and the following plots show how the metrics change during the training.</p>
+<p><img alt="" src="../res/2024-08-28-17-31-07.png" /></p>
+<p>We see an almost monotonic improvement during training, however the validation loss shows a different story.</p>
+<p><img alt="" src="../res/2024-08-28-17-31-58.png" /></p>
+<p>Thus I should probably evaluate the last and the best checkpoint, and launch longer trainings because there might be room for improvement.</p>
+<p><strong>Validation loss is useful when it decreases, but when it diverges it is no longer correlated with model accuracy</strong></p>
+<h3 id="experiments-training-on-arc-tasks">Experiments training on ARC tasks</h3>
+<h4 id="longer-trainings">Longer trainings</h4>
+<p>Since I have found that the validation loss was not a good metric, I'm going to train the models for longer.</p>
+<p><img alt="longer trainings" src="../res/2024-09-02-17-12-50.png" /></p>
+<p>The plot shows a clear disconnection between validation loss and the other metrics.</p>
+<h4 id="optimal-learning-rate">Optimal learning rate</h4>
+<p>I have tried increasing the default 1e-4 learning rate to see if I could get better results, without success.</p>
+<p><img alt="optimal learning rate" src="../res/2024-08-31-14-50-58.png" /></p>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>learning rate</th>
+<th>train loss</th>
+<th>val loss</th>
+<th>accuracy</th>
+<th>correct_pixels</th>
+<th>correct_size</th>
+<th>pass_64</th>
+<th>unanswered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen2-0.5B</td>
+<td>1.00E-04</td>
+<td>0.03</td>
+<td>0.175</td>
+<td>3.40%</td>
+<td>67.50%</td>
+<td>85.00%</td>
+<td>18.00%</td>
+<td>2.60%</td>
+</tr>
+<tr>
+<td>Qwen2-0.5B</td>
+<td>2.00E-04</td>
+<td>0.0319</td>
+<td>0.175</td>
+<td>2.90%</td>
+<td>65.50%</td>
+<td>82.70%</td>
+<td>19.00%</td>
+<td>3.60%</td>
+</tr>
+<tr>
+<td>Qwen2-0.5B</td>
+<td>4.00E-04</td>
+<td>0.043</td>
+<td>0.152</td>
+<td>2.80%</td>
+<td>65.40%</td>
+<td>83.00%</td>
+<td>12.50%</td>
+<td>3.10%</td>
+</tr>
+</tbody>
+</table>
+<h4 id="effect-of-lora-rank">Effect of lora rank</h4>
+<p><img alt="effect of lora" src="../res/2024-09-01-09-26-44.png" /></p>
+<ul>
+<li>Train loss decreases as the lora rank increases, as expected. Given more capacity the loss is reduced more.</li>
+<li>There seems to be a relation between accuracy and lora rank. We get higher accuracy by using higher ranks.</li>
+<li>The relation with the other metrics is unclear</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>lora_rank</th>
+<th>train loss</th>
+<th>val loss</th>
+<th>accuracy</th>
+<th>correct_pixels</th>
+<th>correct_size</th>
+<th>pass_64</th>
+<th>unanswered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen2-0.5B</td>
+<td>16</td>
+<td>0.0385</td>
+<td>0.175</td>
+<td>3.10%</td>
+<td>66.50%</td>
+<td>85.00%</td>
+<td>19.50%</td>
+<td>3.00%</td>
+</tr>
+<tr>
+<td>Qwen2-0.5B</td>
+<td>32</td>
+<td>0.0305</td>
+<td>0.175</td>
+<td>3.40%</td>
+<td>67.50%</td>
+<td>85.00%</td>
+<td>18.00%</td>
+<td>2.60%</td>
+</tr>
+<tr>
+<td>Qwen2-0.5B</td>
+<td>64</td>
+<td>0.0249</td>
+<td>0.189</td>
+<td>3.20%</td>
+<td>65.40%</td>
+<td>82.80%</td>
+<td>15.00%</td>
+<td>4.10%</td>
+</tr>
+<tr>
+<td>Qwen2-0.5B</td>
+<td>128</td>
+<td>0.021</td>
+<td>0.1805</td>
+<td>4%</td>
+<td>67.30%</td>
+<td>83.90%</td>
+<td>18.00%</td>
+<td>3.10%</td>
+</tr>
+<tr>
+<td>Qwen2-0.5B</td>
+<td>256</td>
+<td>0.0194</td>
+<td>0.1856</td>
+<td>4.50%</td>
+<td>67.90%</td>
+<td>84.60%</td>
+<td>21.00%</td>
+<td>2.90%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="test-time-fine-tuning">Test time fine-tuning</h3>
+<p>I have done a bunch of experiments with different learning rates and learning rate schedules. The best
+learning rate is the same as in training: 1e-4. And the best schedule is linear. I have tried also cosine with restarts, cyclic learning rate and constant learning rate but give worse results.</p>
+<h4 id="optimal-training-steps">Optimal training steps</h4>
+<p><img alt="optimal steps" src="../res/2024-09-01-09-55-10.png" /></p>
+<p>We see that the accuracy increases when we fine-tune for longer with test-time fine-tuning. Train loss decreases and validation loss raises. The other metrics do not show a clear relation with the number of training steps.</p>
+<table>
+<thead>
+<tr>
+<th>steps</th>
+<th>train loss</th>
+<th>val loss</th>
+<th>accuracy</th>
+<th>correct_pixels</th>
+<th>correct_size</th>
+<th>pass_64</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1000</td>
+<td>0.044</td>
+<td>0.17</td>
+<td>6.70%</td>
+<td>67.90%</td>
+<td>83.30%</td>
+<td>28.00%</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>0.0248</td>
+<td>0.215</td>
+<td>7.80%</td>
+<td>67.00%</td>
+<td>81.60%</td>
+<td>26.50%</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>0.0066</td>
+<td>0.275</td>
+<td>8.70%</td>
+<td>69.00%</td>
+<td>83.80%</td>
+<td>29.50%</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>0.00167</td>
+<td>0.346</td>
+<td>9.50%</td>
+<td>68.10%</td>
+<td>82.10%</td>
+<td>25.50%</td>
+</tr>
+</tbody>
+</table>
+<p>Just by fine-tuning for longer we are able to increase accuracy by 3% (from 6% to 9%).</p>
+<h4 id="removing-train-samples-to-fit-on-max-sequence-length">Removing train samples to fit on max sequence length</h4>
+<p>As part of a following iteration I have implemented a feature that if a task is too long to fit into the <code>max_sequence_length</code>, it removes train samples until it is small enough.</p>
+<p>I wanted to find if it is helpful or not for fine-tuning the model. The effect is is unclear as the results below show. In one case it improves the results and in other it worsens them.
+Thus the effect is likely very small.</p>
+<pre><code># Experiment 1
+/mnt/hdd0/Kaggle/arc24/evaluations/20240828_grid_encoders_ttft/05_shape-and-number-new-model_Qwen2-0.5B-Instruct_lr1e-4_r32_4e3steps/checkpoint-4000/inference_x64.json
+accuracy: 8.7%  correct_pixels: 69.0%   max_correct_pixels: 82.6%   correct_size: 83.8% any_correct_size: 88.0% pass_64: 29.5%  unanswered: 3.0%    
+/mnt/hdd0/Kaggle/arc24/evaluations/20240828_grid_encoders_ttft/06_shape-and-number-new-model-rtstfmsl_Qwen2-0.5B-Instruct_lr1e-4_r32_4e3steps/checkpoint-4000/inference_x64.json
+accuracy: 8.7%  correct_pixels: 68.4%   max_correct_pixels: 81.7%   correct_size: 82.7% any_correct_size: 86.0% pass_64: 27.0%  unanswered: 2.9%
+
+# Experiment 2
+/mnt/hdd0/Kaggle/arc24/evaluations/20240828_grid_encoders_ttft/11_bigger-lora_Qwen2-0.5B-Instruct_lr1e-4_r256_4e3steps/checkpoint-4000/inference_x64.json
+accuracy: 10.4% correct_pixels: 71.0%   max_correct_pixels: 83.2%   correct_size: 84.1% any_correct_size: 87.5% pass_64: 28.0%  unanswered: 2.7%
+/mnt/hdd0/Kaggle/arc24/evaluations/20240828_grid_encoders_ttft/11_bigger-lora-remove-train-samples_Qwen2-0.5B-Instruct_lr1e-4_r256_4e3steps/checkpoint-4000/inference_x64.json
+accuracy: 10.8% correct_pixels: 71.1%   max_correct_pixels: 83.4%   correct_size: 83.8% any_correct_size: 87.5% pass_64: 32.5%  unanswered: 2.1%    
+
+# Experiment 3
+/mnt/hdd0/Kaggle/arc24/evaluations/20240826_grid_encoders/04_row-number-and-grid-shape_Qwen2-0.5B-Instruct_lr1e-4_r32_6e3steps/checkpoint-6000/inference.json
+accuracy: 2.8%  correct_pixels: 66.3%   max_correct_pixels: 82.2%   correct_size: 84.2% any_correct_size: 91.0% pass_n: 18.5%   unanswered: 2.8%
+/mnt/hdd0/Kaggle/arc24/evaluations/20240826_grid_encoders/12_rtstfmsl_Qwen2-0.5B-Instruct_lr1e-4_r32_6e3steps/checkpoint-6000/inference_x64.json
+accuracy: 3.0%  correct_pixels: 67.7%   max_correct_pixels: 83.1%   correct_size: 85.4% any_correct_size: 91.0% pass_n: 16.5%   unanswered: 3.0%
+</code></pre>
+<h3 id="qwen2-05b-vs-qwen2-15b">Qwen2-0.5B vs Qwen2-1.5B</h3>
+<h4 id="train-on-arc-tasks">Train on ARC tasks</h4>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>steps</th>
+<th>train loss</th>
+<th>val loss</th>
+<th>accuracy</th>
+<th>correct_pixels</th>
+<th>correct_size</th>
+<th>pass_64</th>
+<th>pass_2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen2-0.5B</td>
+<td>24000</td>
+<td>0.0157</td>
+<td>0.217</td>
+<td>4.00%</td>
+<td>66.70%</td>
+<td>84.10%</td>
+<td>21.50%</td>
+<td>11.20%</td>
+</tr>
+<tr>
+<td>Qwen2-1.5B</td>
+<td>12000</td>
+<td>0.015</td>
+<td>0.188</td>
+<td>6.20%</td>
+<td>70.50%</td>
+<td>87.60%</td>
+<td>22.00%</td>
+<td>13.30%</td>
+</tr>
+</tbody>
+</table>
+<h4 id="test-time-fine-tuning_1">Test-time fine-tuning</h4>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>steps</th>
+<th>train loss</th>
+<th>val loss</th>
+<th>accuracy</th>
+<th>correct_pixels</th>
+<th>correct_size</th>
+<th>pass_64</th>
+<th>pass_2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen2-0.5B</td>
+<td>4000</td>
+<td>0.0066</td>
+<td>0.275</td>
+<td>8.70%</td>
+<td>69.00%</td>
+<td>83.80%</td>
+<td>29.50%</td>
+<td>22.50%</td>
+</tr>
+<tr>
+<td>Qwen2-1.5B</td>
+<td>4000</td>
+<td>0.0015</td>
+<td>0.323</td>
+<td>12.90%</td>
+<td>72.60%</td>
+<td>85.30%</td>
+<td>33.00%</td>
+<td>23.20%</td>
+</tr>
+</tbody>
+</table>
+<h4 id="summary">Summary</h4>
+<p>Qwen2-1.5B gets better results but the difference is small when we consider the pass_2 metric which is the most
+relevant for the challenge.</p>
+<p>When we train on ARC tasks we get a pass_2 of ~12% and this increases to 23% when doing test-time fine-tuning.</p>
+<h3 id="submission-results">Submission results</h3>
+<p>We have improved the score from 7 to 10. In addition we have been able to ensemble the model with the 2020 solution and achieve a score of 25 (24 + 1).</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The biggest finding of this iteration is that validation loss is only useful when it decreases, once it starts to diverge it is no longer useful.
+I have found that I can train for longer both on normal training and test-time fine-tuning and improve the results.</p>
+<p>Predicting the grid shape and writing row numbers also helps to improve the predictions, this has a small cost in outputting more tokens.</p>
+<p>It seems that using higher lora ranks gives more accurate models.</p>
+<p>Qwen2-1.5B gets better results than Qwen2-0.5B, but the difference in pass_2 metric is too small. That might explain
+that we didn't see clear differences in the leaderboard.</p>
+<p>We have been able to increase the LB score to 10, and using an ensemble to 25. This implies that there is a gap of around 10% between validation and leaderboard.</p>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li>I might have to reconsider the role of lora ranking now that I know that validation loss is not a good proxy.
+  Run a series of experiments with different r. Maybe having a higher r could allow for faster ttft.</li>
+<li>Trainings are becoming too long, could I speedup them using libraries such as <a href="https://github.com/unslothai/unsloth">unsloth</a>?</li>
+<li>Optimize the input prompt</li>
+<li>Does it make sense to fine-tune bigger models such as Phi-3, Llama or the 7B Qwen2?</li>
+</ul>
+<h2 id="todo">TODO</h2>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled checked/> Does it help to predict the shape of the grid?</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Does it help to add row idx at the start of each line?</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Are the pixel symbols relevant? Or could I replace the number for other symbols?</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> How useful is the validation loss?</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Train for longer, is validation loss really useful?<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled checked/> What is the optimal train steps?</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> I'm using the best learning rate?</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Can I get better results using a different lora rank?</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Test time fine-tuning, train with different number of steps<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled checked/> 1e-4 is the best learning rate</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> So far the best results are obtained training for longer, I have trained up to 4k steps</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Do I get better results if I train for more than 4k steps?</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Can the model learn faster using cyclic learning rates? No</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Does it help to to remove train samples to fit training sequence length? First experiment gives worse results, but not sure if the differences are significative.</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Could I train faster by changing the batch size?</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Qwen2-0.5B vs Qwen2-1.5B</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Do we get improvements in submission?</li>
+<li class="task-list-item"><input type="checkbox" disabled/> If I make the same submission 3 times, what is the variability of the score? (Using a random seed)</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    2024-09-02
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/guillermobarbadillo/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/guille_bar" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/channel/UCOHmUwHnd2hmUpiDzaQ1Isg" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305m-317.51 213.508V175.185l142.739 81.205z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.kaggle.com/ironbar" target="_blank" rel="noopener" title="www.kaggle.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+        <script src="../../javascript/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
