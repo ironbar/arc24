@@ -17,7 +17,7 @@
         <link rel="next" href="../utils/00_Challenge_Workflow/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../res/arc_icon.jpg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
     
     
@@ -90,8 +90,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="arc24" class="md-header__button md-logo" aria-label="arc24" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../res/arc_icon.jpg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -318,8 +317,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="arc24" class="md-nav__button md-logo" aria-label="arc24" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../res/arc_icon.jpg" alt="logo">
 
     </a>
     arc24
@@ -2498,17 +2496,7 @@ Papers are about communicating your ideas clearly so that others can learn from 
 --->
 
 <h2 id="abstract">Abstract</h2>
-<p>This paper presents my approach to the 2024 Abstraction and Reasoning Challenge. I have focused
-on the abstraction side of the challenge and on data efficiency, trying to build the best representation
-possible of the ARC problems using the available public data. The main contribution of the solution
-is that it is possible to train a model to learn multiple tasks about the ARC problems. The default
-task of the ARC challenge is to learn to predict the output of the test sample given input-output train samples.
-But there are many other tasks that can be done, for example we can train a model to learn the inputs
-distributions and to generate a new input given the train input samples. Since we train a model
-to do multiple ARC-related tasks we called the approach Omni-ARC. The Omni-ARC solution starts with
-a public LLM, fine-tunes it to learn multiple ARC-related tasks and finally uses test-time fine-tuning
-to improve the accuracy of the model on the private test set. It achieves a score of 40 on the public leaderboard,
-resulting in the 4 position in the challenge.</p>
+<p>This paper presents my approach to the 2024 Abstraction and Reasoning Challenge (ARC). I focus on the abstraction aspect of the challenge and emphasize data efficiency, aiming to construct the best possible representation of the ARC problems using the available public data. The main contribution of this solution is demonstrating that a model can be trained to learn multiple tasks related to the ARC problems. While the primary objective of the ARC challenge is to predict the output of a test sample given input-output training samples, many other tasks are also possible. For example, a model can be trained to learn input distributions and generate new inputs based on the training samples. Given that this approach trains a model to perform multiple ARC-related tasks, it is named Omni-ARC. The Omni-ARC solution begins with a publicly available large language model (LLM), fine-tunes it to learn various ARC-related tasks, and applies test-time fine-tuning to improve model accuracy on the private test set. It achieves a score of 40 on the public leaderboard, securing 4th place in the challenge.</p>
 <h2 id="intro">Intro</h2>
 <h3 id="abstraction-and-reasoning-challenge">Abstraction and Reasoning Challenge</h3>
 <p>There are two different definitions of artificial intelligence. The first says that artificial intelligence is
@@ -2632,7 +2620,7 @@ v8: 20240925_submission_models/03_continue-lora128-Qwen2.5-0.5B-Instruct_lr2.5e-
 
 <p>The solution on a nutshell:</p>
 <ol>
-<li>Take <code>Qwen2.5-0.5B</code> and fine-tune it on publicly available ARC datasets. The model was fine-tuned to:<ol>
+<li>Take <code>Qwen2.5-0.5B-Instruct</code> and fine-tune it on publicly available ARC datasets. The model was fine-tuned to:<ol>
 <li>generate the outputs for the test samples</li>
 <li>learn the inputs distribution and generate new inputs.</li>
 </ol>
@@ -2692,6 +2680,16 @@ v8: 20240925_submission_models/03_continue-lora128-Qwen2.5-0.5B-Instruct_lr2.5e-
 <li><code>examples + input -&gt; output</code>. The original task of the ARC dataset.</li>
 <li><code>inputs -&gt; input</code>. Generating new inputs requires to understand the distribution of the grids. It could also be done with the outputs, that should also follow some distribution.</li>
 </ul>
+<details class="note">
+<summary>Click to see examples of newly generated inputs</summary>
+<p><img alt="" src="../modeling/res/2024-09-14-08-34-47.png" /></p>
+<p><img alt="" src="../modeling/res/2024-09-14-08-35-16.png" /></p>
+<p><img alt="" src="../modeling/res/2024-09-14-08-36-04.png" /></p>
+<p><img alt="" src="../modeling/res/2024-09-14-08-39-28.png" /></p>
+<p><img alt="" src="../modeling/res/2024-09-14-08-39-44.png" /></p>
+<p><img alt="" src="../modeling/res/2024-09-14-08-40-01.png" /></p>
+<p><img alt="" src="../modeling/res/2024-09-14-08-40-23.png" /></p>
+</details>
 <h4 id="data-augmentation">Data augmentation</h4>
 <p>For each problem the same data augmentation was applied to all the inputs and outputs. Data augmentation
 was a composition of the following augmentations:</p>
@@ -2740,7 +2738,7 @@ on a Markdown code snippet, the shape was defined at the first line and each row
 also on test-time fine-tuning it seemed to be beneficial to just fine-tune the already trained LoRA adapter
 instead of creating a fresh new adapter.</p>
 <ul>
-<li>Model: <code>Qwen2.5-0.5B</code></li>
+<li>Model: <code>Qwen2.5-0.5B-Instruct</code></li>
 <li>LoRA rank: 128</li>
 <li>Learning rate: 5e-5, with a linear schedule with warmup</li>
 <li>Batch size: 16</li>
@@ -2887,7 +2885,7 @@ current 10k tokens. That requires better hardware both for training and inferenc
 <p>Finally I'm going to buy an <a href="https://amzn.eu/d/efqVvEh">Omni-man funko pop figure</a> to celebrate the prize.</p>
 <h2 id="links">Links</h2>
 <ul>
-<li><a href="">Documentation of all the work done during the challenge</a></li>
+<li><a href="https://ironbar.github.io/arc24/">Documentation of all the work done during the challenge</a></li>
 <li><a href="https://github.com/ironbar/arc24">Github repo</a></li>
 <li><a href="https://www.kaggle.com/code/ironbar/single-task-test-time-fine-tuning-for-arc24?scriptVersionId=199282752">Submission notebook</a></li>
 <li><a href="">Kaggle post</a></li>
