@@ -1938,6 +1938,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#training-using-problem-augmentation-is-helpful" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training using problem augmentation is helpful
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learning-the-inputs-distribution-is-helpful-to-solve-arc-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning the inputs distribution is helpful to solve ARC problems
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2407,6 +2425,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#training-using-problem-augmentation-is-helpful" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training using problem augmentation is helpful
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learning-the-inputs-distribution-is-helpful-to-solve-arc-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning the inputs distribution is helpful to solve ARC problems
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2495,7 +2531,7 @@ Papers are about communicating your ideas clearly so that others can learn from 
 --->
 
 <h2 id="abstract">Abstract</h2>
-<p>This paper presents my approach to the 2024 Abstraction and Reasoning Challenge (ARC). I focus on the abstraction aspect of the challenge and emphasize data efficiency, aiming to construct the best possible representation of the ARC problems using the available public data. The main contribution of this solution is demonstrating that a model can be trained to learn multiple tasks related to the ARC problems. While the primary objective of the ARC challenge is to predict the output of a test sample given input-output training samples, many other tasks are also possible. For example, a model can be trained to learn input distributions and generate new inputs based on the training samples. Given that this approach trains a model to perform multiple ARC-related tasks, it is named Omni-ARC. The Omni-ARC solution begins with a publicly available large language model (LLM), fine-tunes it to learn various ARC-related tasks, and applies test-time fine-tuning to improve model accuracy on the private test set. It achieves a score of 40 on the public leaderboard, securing 4th place in the challenge.</p>
+<p>This paper presents my approach to the 2024 Abstraction and Reasoning Challenge (ARC). I focus on the abstraction aspect of the challenge and emphasize data efficiency, aiming to construct the best possible representation of the ARC problems using the available public data. The main contribution of this solution is demonstrating that a model can be trained to learn multiple tasks related to the ARC problems. While the primary objective of the ARC challenge is to predict the output of a test sample given input-output training samples, many other tasks are also possible. For example, a model can be trained to learn input distributions and generate new inputs based on the training samples. Given that this approach trains a model to perform multiple ARC-related tasks, it is named Omni-ARC. The Omni-ARC solution begins with a publicly available large language model (LLM), fine-tunes it to learn various ARC-related tasks, and applies test-time fine-tuning to improve model accuracy on the private test set. It achieves a score of 40 on the public leaderboard, securing 3rd place in the challenge.</p>
 <h2 id="intro">Intro</h2>
 <h3 id="abstraction-and-reasoning-challenge">Abstraction and Reasoning Challenge</h3>
 <p>There are two different definitions of artificial intelligence. The first says that artificial intelligence is
@@ -2615,6 +2651,8 @@ https://www.kaggle.com/code/ironbar/single-task-test-time-fine-tuning-for-arc24?
 v2: 20240925_submission_models/01_lora128-Qwen2.5-0.5B-Instruct_lr5e-5_4e4steps_2gpus_8192msl/checkpoint-40000/
 v5: 20240925_submission_models/02_continue-lora128-Qwen2.5-0.5B-Instruct_lr5e-5_8e4steps_2gpus_8192msl/checkpoint-80000/
 v8: 20240925_submission_models/03_continue-lora128-Qwen2.5-0.5B-Instruct_lr2.5e-5_8e4steps_2gpus_8192msl/checkpoint-80000/
+
+/mnt/hdd0/Kaggle/arc24/models/20240925_submission_models/03_continue-lora128-Qwen2.5-0.5B-Instruct_lr2.5e-5_8e4steps_2gpus_8192msl/
 -->
 
 <p>The solution on a nutshell:</p>
@@ -2738,7 +2776,7 @@ also on test-time fine-tuning it seemed to be beneficial to just fine-tune the a
 instead of creating a fresh new adapter.</p>
 <ul>
 <li>Model: <code>Qwen2.5-0.5B-Instruct</code></li>
-<li>LoRA rank: 128</li>
+<li>LoRA rank: 128 (17M of parameters)</li>
 <li>Learning rate: 5e-5, with a linear schedule with warmup</li>
 <li>Batch size: 16</li>
 <li>Training steps: 2e5</li>
@@ -2863,6 +2901,63 @@ of training steps. The problem with these models is that they are slower to fine
 Moreover due to VRAM requirements we have to decrease the length of the training samples. It's very
 likely that LB score could be improved with this bigger models if better hardware and more submission
 time is given.</p>
+<h3 id="training-using-problem-augmentation-is-helpful">Training using problem augmentation is helpful</h3>
+<p>The plot below shows the accuracy of a model on the evaluation dataset when being trained with a different
+amount of problem augmentation. Using problem augmentation 50% of the times seems to be the best option. Accuracy measures how many of the predictions made by the model are correct and it's a more robust and stable metric than vote_2 or pass_n (because it is computed with a bigger number of samples).</p>
+<p><img alt="problem augmentation" src="../res/2024-11-12-09-33-08.png" /></p>
+<p>More info on <a href="../modeling/Iteration_21_more_data_augmentation/">Iteration 21. More data augmentation</a></p>
+<h3 id="learning-the-inputs-distribution-is-helpful-to-solve-arc-problems">Learning the inputs distribution is helpful to solve ARC problems</h3>
+<p>The table below shows the results on the evaluation dataset of an experiment that tried to see if
+learning the inputs and/or the outputs distribution was helpful. There is a clear improvement on accuracy
+when learning the inputs distribution. However learning the outputs distribution does not seem to be
+helpful.</p>
+<table>
+<thead>
+<tr>
+<th>new tasks</th>
+<th>accuracy</th>
+<th>correct_pixels</th>
+<th>correct_size</th>
+<th>pass_n</th>
+<th>vote_2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>4.61%</td>
+<td>68.54%</td>
+<td>87.34%</td>
+<td>17.25%</td>
+<td>10.73%</td>
+</tr>
+<tr>
+<td>5k inputs</td>
+<td><strong>5.36%</strong></td>
+<td><strong>69.40%</strong></td>
+<td><strong>88.38%</strong></td>
+<td><strong>19.75%</strong></td>
+<td><strong>13.13%</strong></td>
+</tr>
+<tr>
+<td>5k inputs, 5k outputs</td>
+<td>5.13%</td>
+<td>68.34%</td>
+<td>87.18%</td>
+<td><strong>19.75%</strong></td>
+<td>12.37%</td>
+</tr>
+<tr>
+<td>2.5k inputs 2.5k outputs</td>
+<td>4.68%</td>
+<td>68.55%</td>
+<td>87.66%</td>
+<td>17.38%</td>
+<td>11.99%</td>
+</tr>
+</tbody>
+</table>
+<p><a href="../modeling/Iteration_22_learning_inputs_distribution/">Iteration 22. Learning the inputs distribution</a></p>
 <h2 id="conclusion">Conclusion</h2>
 <h2 id="future-steps">Future steps</h2>
 <p>The approach of using a transformer and test-time fine-tuning could likely keep improving and maybe
@@ -2887,8 +2982,9 @@ current 10k tokens. That requires better hardware both for training and inferenc
 <li><a href="https://ironbar.github.io/arc24/">Documentation of all the work done during the challenge</a></li>
 <li><a href="https://github.com/ironbar/arc24">Github repo</a></li>
 <li><a href="https://www.kaggle.com/code/ironbar/single-task-test-time-fine-tuning-for-arc24?scriptVersionId=199282752">Submission notebook</a></li>
-<li><a href="">Kaggle post</a></li>
-<li><a href="">Youtube video</a></li>
+<li><a href="https://www.kaggle.com/competitions/arc-prize-2024/discussion/545671">Kaggle post</a></li>
+<li>TODO: <a href="">Youtube video</a></li>
+<li><a href="https://notebooklm.google.com/notebook/cf13e950-4048-4ba6-a001-e3d03a577339/audio">NotebookLM podcast</a></li>
 <li><a href="https://www.linkedin.com/in/guillermobarbadillo/">Linkedin profile</a></li>
 <li><a href="https://x.com/guille_bar">Twitter profile</a></li>
 </ul>
