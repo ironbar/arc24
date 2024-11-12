@@ -2580,7 +2580,8 @@ I don't like this image, don't know if helps.
 <p>If we train a model to do tasks that require a good representation of the data, it's likely that the
 model will internally develop the required representation.</p>
 <p>My insight was that we could use the ARC problems in many different ways to learn that representation,
-not just in the original proposed task that asks to generate the output for an image given a few input-output pairs.</p>
+not just in the original proposed task that asks to generate the output for an image given a few input-output pairs.
+The next section shows the different ways to use the ARC problems.</p>
 <h3 id="omni-arc-training-a-single-model-to-do-multiple-arc-related-tasks">Omni-ARC: Training a single model to do multiple ARC-related tasks</h3>
 <table>
 <thead>
@@ -2611,7 +2612,7 @@ not just in the original proposed task that asks to generate the output for an i
 <ul>
 <li><code>examples + input -&gt; output</code>. The original task of the ARC dataset.</li>
 <li><code>inputs -&gt; input</code>. Generating new inputs requires to understand the distribution of the grids. It could also be done with the outputs, that should also follow some distribution.</li>
-<li><code>examples -&gt; code</code>. This is the approach used by Ryan Greenblat with GPT-4o</li>
+<li><code>examples -&gt; code</code>. This is the approach used by Ryan Greenblat with GPT-4o, generate code to solve the task given some ARC examples.</li>
 <li><code>code + input -&gt; output</code>. This is equivalent to the first task, but instead of giving examples as input, it gives the code definition of the problem.</li>
 <li><code>code -&gt; inputs</code>. Each input to a task follows some distribution, given a description of the
   distribution the model should be able to generate samples of that distribution.</li>
