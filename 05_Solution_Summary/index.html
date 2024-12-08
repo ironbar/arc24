@@ -1912,9 +1912,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#solving-the-tasks-using-code-did-not-worked-for-me" class="md-nav__link">
+  <a href="#solving-the-tasks-using-code-did-not-work-for-me" class="md-nav__link">
     <span class="md-ellipsis">
-      Solving the tasks using code did not worked for me
+      Solving the tasks using code did not work for me
     </span>
   </a>
   
@@ -2399,9 +2399,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#solving-the-tasks-using-code-did-not-worked-for-me" class="md-nav__link">
+  <a href="#solving-the-tasks-using-code-did-not-work-for-me" class="md-nav__link">
     <span class="md-ellipsis">
-      Solving the tasks using code did not worked for me
+      Solving the tasks using code did not work for me
     </span>
   </a>
   
@@ -2644,7 +2644,7 @@ improve the data efficiency of the system and get better results for the same am
 <blockquote>
 <p>I recently got to 50%1 accuracy on the public test set for ARC-AGI by having GPT-4o generate a huge number of Python implementations of the transformation rule (around 8,000 per problem) and then selecting among these implementations based on correctness of the Python programs on the examples (if this is confusing, go to the next section)2. I use a variety of additional approaches and tweaks which overall substantially improve the performance of my method relative to just sampling 8,000 programs.</p>
 </blockquote>
-<p>The <a href="https://redwoodresearch.substack.com/p/getting-50-sota-on-arc-agi-with-gpt">approach taken by Ryan Greenblatt</a> was very inspiring because he didn't fine-tuned any model for the ARC challenge.</p>
+<p>The <a href="https://redwoodresearch.substack.com/p/getting-50-sota-on-arc-agi-with-gpt">approach taken by Ryan Greenblatt</a> was very inspiring because he didn't fine-tune any model for the ARC challenge.</p>
 <p>I tried to emulate his approach using open and smaller LLMs with the aim to combine it with the MindsAI
 approach but my efforts failed. However I believe that if I devote more work to this approach it might work.</p>
 <h2 id="approach">Approach</h2>
@@ -2811,7 +2811,7 @@ test problems.</p>
 <p>Data augmentation was applied also at inference, and the data augmentation was reverted from the prediction to get the original output. 96 predictions were done for each problem and voting was used to select the most
 promising predictions. So just like MindsAI's AIRV (augment, inference, reverse augmentation, and vote).</p>
 <p>Inference was done using a temperature of 0.</p>
-<p>VLLM was used to generate the predictions. Each fine-tuned model was used to generate predictions for its problem.</p>
+<p><a href="https://github.com/vllm-project/vllm">vLLM</a> was used to generate the predictions. Each fine-tuned model was used to generate predictions for its problem.</p>
 <h3 id="ensemble">Ensemble</h3>
 <p>I ensembled my model predictions with the <a href="https://www.kaggle.com/code/mehrankazeminia/3-arc24-developed-2020-winning-solutions">2020 solution</a>. Since the 2020 solution only requires CPU, I managed to run
 it on the background while I used the GPU for fine-tuning and inference with my model. I only had to
@@ -2821,7 +2821,7 @@ be careful with the RAM usage because both jobs had to share the same memory.</p
 <p>This approach scored 40 on the ARC leaderboard.</p>
 <p><img alt="importance of the steps" src="../res/2024-11-11-11-55-30.png" /></p>
 <p>The same approach (without test-time fine-tuning) could solve 32% of the evaluation tasks, and when using voting with 32 predictions
-it achieved a top_2 accuracy of 22%. Due to limited hardware resources I didn't usually evaluated
+it achieved a top_2 accuracy of 22%. Due to limited hardware resources I didn't usually evaluate
 the models with test-time fine-tuning on the evaluation dataset. Kaggle provides 30 hours of GPU each week,
 but we could make 3 submissions a day which is equivalent to 36 hours of compute. Thus it was much
 cheaper to use the submissions to see the performance of the test-time fine-tuning where we had 7 times
@@ -2835,7 +2835,7 @@ more compute available per week.</p>
 <li>Verify if an output is correct</li>
 <li>Select the correct output between two options</li>
 </ol>
-<p>The idea was that we could improve the LB score if we replaced the voting selection mechanism by a more accurate one.
+<p>The idea was that we could improve the leaderboard (LB) score if we replaced the voting selection mechanism by a more accurate one.
 Using trained models I generated wrong predictions for the original ARC dataset using a sampling temperature close to 1.</p>
 <table>
 <thead>
@@ -2871,13 +2871,13 @@ for a frozen model.</p>
 <p>This verifier models could benefit from test-time fine-tuning, but I could not test the hypothesis due
 to the limited submission time.</p>
 <p>More information on <a href="../modeling/Iteration_47_select_instead_of_verify/">Iteration 47</a> and <a href="../modeling/Iteration_45_improve_verifier/">Iteration 45</a>.</p>
-<h3 id="solving-the-tasks-using-code-did-not-worked-for-me">Solving the tasks using code did not worked for me</h3>
+<h3 id="solving-the-tasks-using-code-did-not-work-for-me">Solving the tasks using code did not work for me</h3>
 <p>I also tried to expand on the Omni-ARC approach by training the model to do the additional tasks:</p>
 <ul>
 <li><code>examples -&gt; code</code>. This is the approach used by Ryan Greenblat with GPT-4o</li>
 <li><code>code + input -&gt; output</code>. This is equivalent to the first task, but instead of giving examples as input, it gives the code definition of the problem.</li>
 </ul>
-<p>To do so I build a small domain specific language (DSL) and recreated 285 of the ARC training tasks
+<p>To do so I built a small domain specific language (DSL) and recreated 285 of the ARC training tasks
 with python code. This was a laborious process that took around 3 weeks.</p>
 <p>Unfortunately the model did not generalize well. It could only solve 5% of the evaluation tasks, and those
 tasks were very similar to the training tasks. On the private test set a lucky submission was able to
@@ -2969,7 +2969,7 @@ However that kind of solution won't give us more knowledge about how to reach AG
 pursuing that direction just to know where it can get us, but I don't feel it is interesting.</p>
 <p>On this year competition I have focused on abstraction, on building the best possible representation
 of the ARC problems. But the reasoning part was missing from my solution. When I try to solve the ARC
-problems I make an hypothesis of the transformation, see if it works on the train data and fix it if
+problems I make a hypothesis of the transformation, see if it works on the train data and fix it if
 it doesn't. Finding the solution is typically an iterative process of trial and error.</p>
 <p>I believe that we can teach a model to reason, just like OpenAI is developing the new o1 models. First we will
 need to have a model that is able to generate code to solve the problems, otherwise we cannot verify
@@ -2992,7 +2992,7 @@ being used in the solution that beats the 85% goal.</p>
 <li><a href="https://www.kaggle.com/competitions/arc-prize-2024/discussion/545671">Kaggle post</a></li>
 <li>TODO: create a <a href="https://www.youtube.com/@guillermobarbadillo">Youtube video</a> explaining my approach and comparing to other teams solutions.</li>
 <li><a href="https://notebooklm.google.com/notebook/cf13e950-4048-4ba6-a001-e3d03a577339/audio">NotebookLM podcast</a></li>
-<li><a href="https://www.linkedin.com/in/guillermobarbadillo/">Linkedin profile</a></li>
+<li><a href="https://www.linkedin.com/in/guillermobarbadillo/">LinkedIn profile</a></li>
 <li><a href="https://x.com/guille_bar">Twitter profile</a></li>
 </ul>
 <h2 id="acknowledgments">Acknowledgments</h2>
@@ -3002,7 +3002,7 @@ being used in the solution that beats the 85% goal.</p>
   the challenge. They gave me access to A100 GPUs with 80GB of VRAM, which allowed me to train bigger models.</li>
 <li><a href="https://huggingface.co/Qwen">Qwen</a> for training and releasing a family of very capable LLMs with
   many different sizes.</li>
-<li><a href="https://wandb.ai/home">Weigths and bias</a> I used it to track all the experiments in a single place.
+<li><a href="https://wandb.ai/home">Weigths and Biases</a> I used it to track all the experiments in a single place.
   It's an amazing tool and free for individuals.</li>
 <li><a href="https://lambdalabs.com/">Lambdalabs</a>. I did some short (but expensive) experiments on the last
   week of the challenge in Lambdalabs. They provide me with some free credits that partially covered
@@ -3032,7 +3032,7 @@ being used in the solution that beats the 85% goal.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    2024-11-12
+    2024-12-08
   </span>
 
     
